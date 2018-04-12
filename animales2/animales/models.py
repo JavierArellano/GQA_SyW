@@ -48,6 +48,9 @@ class Animal(models.Model):
     def __str__(self):
         return u'Nombre: '+self.name
 
+    class Meta:
+        verbose_name=u'Animal'
+        verbose_name_plural=u'Animales'
 
 class AnimalType(models.Model):
     species = models.CharField(verbose_name=u'Tipo de Animal', max_length=200,
@@ -58,6 +61,9 @@ class AnimalType(models.Model):
     def __unicode__(self):
         return self.species
 
+    class Meta:
+        verbose_name=u'Tipo de Animal'
+        verbose_name_plural=u'Tipos de Animales'
 
 class Race(models.Model):
     type_animal = models.ForeignKey('AnimalType', verbose_name=u'Tipo de Animal',
@@ -67,6 +73,10 @@ class Race(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        verbose_name=u'Raza'
+        verbose_name_plural=u'Razas'
 
 
 
@@ -92,6 +102,9 @@ class Country(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        verbose_name=u'País'
+        verbose_name_plural=u'Paises'
 
 class City(models.Model):
     country = models.ForeignKey('Country', verbose_name=u'País',
@@ -102,6 +115,9 @@ class City(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        verbose_name=u'Ciudad'
+        verbose_name_plural=u'Ciudades'
 
 
 class AnimalImage(models.Model):
@@ -111,3 +127,7 @@ class AnimalImage(models.Model):
 
     def __unicode__(self):
         return self.id
+
+    class Meta:
+        verbose_name=u'Imágen'
+        verbose_name_plural=u'Imágenes'
