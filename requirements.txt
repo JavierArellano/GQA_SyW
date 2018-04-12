@@ -1,0 +1,4 @@
+Django==1.10
+django-jet==1.0.7
+easy-thumbnails==2.5
+Pillow==5.1.0
