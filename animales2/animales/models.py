@@ -45,8 +45,8 @@ class Animal(models.Model):
     date_created = models.DateTimeField(null=False, auto_now_add=True)
     date_updated = models.DateTimeField(null=False, auto_now=True)
 
-    def __str__(self):
-        return u'Nombre: '+self.name
+    def __unicode__(self):
+        return self.name
 
     class Meta:
         verbose_name=u'Animal'
