@@ -17,11 +17,7 @@ def animaluid(request):
 	return HttpResponse(serialized_q)
 
 def animal_filter(request):
-	import ipdb;ipdb.set_trace()
-	lista=list()
-	for k,v in request.GET:
-		lista.append()
-	animal = Animal.objects.filter(lista).values('name', 'state', 'animal_type', 'race', 'profile', 'color', 'age', 'genre', 'vaccinated', 'description')
+	animal = Animal.objects.filter(**request.GET.dict()).values('name', 'state', 'animal_type', 'race', 'profile', 'color', 'age', 'genre', 'vaccinated', 'description')
 	serialized_q = json.dumps(list(animal), cls=DjangoJSONEncoder)
 	return HttpResponse(serialized_q)
 
