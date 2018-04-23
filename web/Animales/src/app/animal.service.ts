@@ -10,5 +10,9 @@ export class AnimalService {
   getAnimals(){
   	return this.http.get("http://127.0.0.1:8000")
   }
+  getUserAnimals(id){
+  	return this.http.get("http://127.0.0.1:8000/animal?userid="+id)
+  }
+
 
 }

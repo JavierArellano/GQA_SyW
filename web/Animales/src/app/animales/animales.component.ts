@@ -18,6 +18,13 @@ export class AnimalesComponent implements OnInit {
     })
     
   }
+  
+  getUserAnimals(id){
+    this.animalService.getUserAnimals(id).subscribe(data=> {
+        this.animales=data;
+    })
+    
+  }
 
   ngOnInit() {
     this.getAnimals();
