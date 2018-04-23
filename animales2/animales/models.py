@@ -83,8 +83,8 @@ class Race(models.Model):
 class Profile(models.Model):
     user = models.ForeignKey(User, verbose_name=u'Usuario',
         blank=True, null=False, related_name='users')
-    country = models.ForeignKey('Country', verbose_name=u'País',
-        blank=True, null=False, related_name='countriesP')
+    city = models.ForeignKey('City', verbose_name=u'Ciudad',
+        blank=True, null=False, related_name='citiesP')
 
     def __unicode__(self):
         return self.user.username

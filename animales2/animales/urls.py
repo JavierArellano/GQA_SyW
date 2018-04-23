@@ -4,7 +4,6 @@ from animales import views
 
 
 urlpatterns = [
-    url(r'^filter_animal', views.animal_filter, name="filter_animal"),
-    url(r'^$', views.animals, name="animals"),
-    url(r'^animal', views.animaluid, name='animaluid'),
+    url(r'^animal', views.animals, name='animals'),
+    url(r'^user', views.user, name='user'),
 ]
