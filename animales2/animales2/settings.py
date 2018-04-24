@@ -76,6 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'animales2.wsgi.application'
 CORS_ORIGIN_ALLOW_ALL = True
+CSRF_COOKIE_SECURE = False
 
 
 # Database
