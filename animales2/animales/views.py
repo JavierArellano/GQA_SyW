@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.core.serializers import serialize
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 import json 
 from django.core.serializers.json import DjangoJSONEncoder
 from django.views.decorators.csrf import csrf_exempt
@@ -26,17 +27,42 @@ def user(request):
 
 @csrf_exempt
 def newAnimal(request):
-	import ipdb;ipdb.set_trace()
-	nuevo_animal=Animal()
-	nuevo_animal.animal_type_id = request.POST['animal_type']
-	nuevo_animal.race_id = request.POST['race']
-	nuevo_animal.profile_id =request.POST['profile']
-	nuevo_animal.state = request.POST['state']
-	nuevo_animal.name = request.POST['name']
-	nuevo_animal.color = request.POST['color']
-	nuevo_animal.age = request.POST['age']
-	nuevo_animal.genre = request.POST['genre']
-	nuevo_animal.vaccinated = request.POST['vaccinated']
-	nuevo_animal.description = request.POST['description']
-	nuevo_animal.save()
+	#import ipdb;ipdb.set_trace()
+	new_animal=Animal()
+	new_animal.animal_type_id = request.POST['animal_type']
+	new_animal.race_id = request.POST['race']
+	new_animal.profile_id =request.POST['profile']
+	new_animal.state = request.POST['state']
+	new_animal.name = request.POST['name']
+	new_animal.color = request.POST['color']
+	new_animal.age = request.POST['age']
+	new_animal.genre = request.POST['genre']
+	new_animal.vaccinated = request.POST['vaccinated']
+	new_animal.description = request.POST['description']
+	new_animal.save()
 	return HttpResponseRedirect("/animal")
+
+@csrf_exempt
+def registration(request):
+	#import ipdb;ipdb.set_trace()
+	new_user=User()
+	new_user.username = request.POST['username']
+	new_user.password = request.POST['password']
+	new_user.email = request.POST['email']
+	new_user.first_name = request.POST['first_name']
+	new_user.last_name = request.POST['last_name']
+	new_user.save()
+	profile = Profile()
+	profile.user_id = new_user.id
+	profile.city_id = request.POST['city']
+	return HttpResponseRedirect("/animal")
+
+
+@csrf_exempt
+def login(request):
+	import ipdb;ipdb.set_trace()
+	user = authenticate(username=request.POST['username'], password=request.POST['password'])
+	if user is not None:
+		return HttpResponse(list(user))
+	else:
+		return None# No backend authenticated the credentials
