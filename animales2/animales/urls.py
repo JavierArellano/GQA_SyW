@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^nuevo_animal', views.newAnimal, name='newAnimal'),
     url(r'^registro', views.registration, name='registration'),
     url(r'^login', views.login, name='login'),
+    url(r'^ciudades', views.cities, name='cities'),
 ]

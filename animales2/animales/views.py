@@ -25,6 +25,20 @@ def user(request):
 	serialized_q = json.dumps(lista, cls=DjangoJSONEncoder)
 	return HttpResponse(serialized_q)
 
+def cities(request):
+	#hay que introducir datos en el sistema, para terminarla
+	import ipdb;ipdb.set_trace()
+	query = Country.objects.all().values()
+	country_list = list(query)
+	queryset = City.objects.all().values()
+	serialized_q = json.dumps(list(queryset), cls=DjangoJSONEncoder)
+	return HttpResponse(serialized_q)
+
+def animal_image(request):
+	import ipdb;ipdb.set_trace()
+	queryset = AnimalImage.objects.filter(request.GET[animal_id]).values()
+	return HttpResponse(queryset)
+
 @csrf_exempt
 def newAnimal(request):
 	#import ipdb;ipdb.set_trace()
@@ -61,7 +75,7 @@ def registration(request):
 @csrf_exempt
 def login(request):
 	import ipdb;ipdb.set_trace()
-	user = authenticate(username=request.POST['username'], password=request.POST['password'])
+	user = authenticate(username='algo', password='1234')
 	if user is not None:
 		return HttpResponse(list(user))
 	else:

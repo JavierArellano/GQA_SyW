@@ -8,10 +8,10 @@ export class AnimalService {
   constructor(private http: HttpClient) { }
 
   getAnimals(){
-  	return this.http.get("http://127.0.0.1:8000")
+  	return this.http.get("http://127.0.0.1:8000/animal/")
   }
   getUserAnimals(id){
-  	return this.http.get("http://127.0.0.1:8000/animal?userid="+id)
+  	return this.http.get("http://127.0.0.1:8000/user?user_id="+id)
   }
 
 
