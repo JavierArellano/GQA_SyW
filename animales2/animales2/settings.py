@@ -25,7 +25,7 @@ SECRET_KEY = '+n_rr=e=-8+#)fobw-*m44b8z-jwc%_9&og^eon3b%30^r0_ln'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['animaleslecrin.herokuapp.com']
 
 
 # Application definition
