@@ -13,3 +13,26 @@
 
 * http://localhost:8000/animal - GET - obtener todos los animales
 * http://localhost:8000/user?user_id=X - GET - obtiene un user
+
+* http://localhost:8000/nuevo_animal - POST - crea un nuevo animal en la BD
+
+animal_type:1
+race:1
+profile:1
+state:(
+    (u'Adopción', u'Adopción'),
+    (u'Perdido', u'Perdido'),
+    (u'Encontrado', u'Encontrado'),
+    (u'Acogida',u'Acogida'),
+    (u'Otro',u'Otro')
+)
+name:chucho
+color:marron
+genre:(
+    (u'Macho', u'Macho'),
+    (u'Hembra',u'Hembra'),
+    (u'Otro', u'Otro')
+)
+vaccinated:True
+description:Se ha perdido
+age:1 año

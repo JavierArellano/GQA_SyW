@@ -55,8 +55,6 @@ class Animal(models.Model):
 class AnimalType(models.Model):
     species = models.CharField(verbose_name=u'Tipo de Animal', max_length=200,
         blank=True, null=False)
-    animal = models.ForeignKey('Animal', verbose_name=u'Tipo de Animal',
-        blank=False, null=True, related_name='types')
 
     def __unicode__(self):
         return self.species
