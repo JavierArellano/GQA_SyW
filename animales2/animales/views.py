@@ -34,6 +34,15 @@ def cities(request):
 	serialized_q = json.dumps(list(queryset), cls=DjangoJSONEncoder)
 	return HttpResponse(serialized_q)
 
+def animal_type(request):
+	import ipdb;ipdb.set_trace()
+	query = AnimalType.objects.all().values()
+	tipes = list(query)
+	for tipo in tipes:
+		tipo['race']=list(Race.objects.filter(type_animal_id=tipo['id']).values('id','name'))
+	serialized_q = json.dumps(tipes, cls=DjangoJSONEncoder)
+	return HttpResponse(serialized_q)
+
 def animal_image(request):
 	import ipdb;ipdb.set_trace()
 	queryset = AnimalImage.objects.filter(request.GET[animal_id]).values()

@@ -13,6 +13,7 @@
 
 * http://localhost:8000/animal - GET - obtener todos los animales
 * http://localhost:8000/user?user_id=X - GET - obtiene un user
+* http://localhost:8000/tipo - GET - obtiene todos los tipos de animal y las razas de cada tipo.
 
 * http://localhost:8000/nuevo_animal - POST - crea un nuevo animal en la BD
 
