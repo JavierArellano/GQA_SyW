@@ -15,27 +15,29 @@ def animals(request):
 	return HttpResponse(serialized_q)
 
 def user(request):
-	"""
-	TODO: obtener la ciudad y a partir de esta el pais y anadirlos al JSON de respuesta
-	igual que he hecho con los datos del user.
-	"""
+	#import ipdb;ipdb.set_trace()
 	queryset = Profile.objects.filter(**request.GET.dict()).values()
 	lista = list(queryset)
-	lista[0]['user']=list(User.objects.filter(id=lista[0]['user_id']).values('username','email','first_name','last_name'))
+	algo=list(User.objects.filter(id=lista[0]['user_id']).values('username','email','first_name','last_name'))
+	lista[0]['user']=algo[0]
+	algo=list(City.objects.filter(id=lista[0]['city_id']).values())
+	lista[0]['ciudad']=algo[0]
+	algo=list(Country.objects.filter(id=algo[0]['country_id']))
+	lista[0]['pais']=algo[0]
+	del lista[0]['user_id']
+	del lista[0]['city_id']
 	serialized_q = json.dumps(lista, cls=DjangoJSONEncoder)
 	return HttpResponse(serialized_q)
 
 def cities(request):
-	#hay que introducir datos en el sistema, para terminarla
-	import ipdb;ipdb.set_trace()
 	query = Country.objects.all().values()
 	country_list = list(query)
-	queryset = City.objects.all().values()
-	serialized_q = json.dumps(list(queryset), cls=DjangoJSONEncoder)
+	for country in country_list:
+		country['cities']=list(City.objects.filter(country_id=country['id']).values('id','name'))
+	serialized_q = json.dumps(list(country_list), cls=DjangoJSONEncoder)
 	return HttpResponse(serialized_q)
 
 def animal_type(request):
-	import ipdb;ipdb.set_trace()
 	query = AnimalType.objects.all().values()
 	tipes = list(query)
 	for tipo in tipes:
@@ -78,6 +80,7 @@ def registration(request):
 	profile = Profile()
 	profile.user_id = new_user.id
 	profile.city_id = request.POST['city']
+	profile.save()
 	return HttpResponseRedirect("/animal")
 
 
