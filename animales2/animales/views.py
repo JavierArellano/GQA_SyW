@@ -65,7 +65,7 @@ def newAnimal(request):
 	new_animal.vaccinated = request.POST['vaccinated']
 	new_animal.description = request.POST['description']
 	new_animal.save()
-	return HttpResponseRedirect("/animal")
+	return HttpResponse(status=200)
 
 @csrf_exempt
 def registration(request):
@@ -81,7 +81,7 @@ def registration(request):
 	profile.user_id = new_user.id
 	profile.city_id = request.POST['city']
 	profile.save()
-	return HttpResponseRedirect("/animal")
+	return HttpResponse(status=200)
 
 
 @csrf_exempt
