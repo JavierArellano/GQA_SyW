@@ -65,18 +65,19 @@ class animal_image(ProtectedResourceView):
 @method_decorator(csrf_exempt, name='dispatch')
 class newAnimal(ProtectedResourceView):
 	def post(self, request):
-		import ipdb;ipdb.set_trace()
+		#import ipdb;ipdb.set_trace()
+		data = json.loads(request.body)
 		new_animal=Animal()
-		new_animal.animal_type_id = request.POST['animal_type']
-		new_animal.race_id = request.POST['race']
-		new_animal.profile_id =request.POST['profile']
-		new_animal.state = request.POST['state']
-		new_animal.name = request.POST['name']
-		new_animal.color = request.POST['color']
-		new_animal.age = request.POST['age']
-		new_animal.genre = request.POST['genre']
-		new_animal.vaccinated = request.POST['vaccinated']
-		new_animal.description = request.POST['description']
+		new_animal.animal_type_id = data['animal_type']
+		new_animal.race_id = data['race']
+		new_animal.profile_id =data['profile']
+		new_animal.state = data['state']
+		new_animal.name = data['name']
+		new_animal.color = data['color']
+		new_animal.age = data['age']
+		new_animal.genre = data['genre']
+		new_animal.vaccinated = data['vaccinated']
+		new_animal.description = data['description']
 		new_animal.save()
 		return HttpResponse(status=200)
 
