@@ -9,12 +9,16 @@ import { AnimalService } from '../animal.service';
 export class AnimalesComponent implements OnInit {
   public animales;
   public selectuserid;
+  public logged;
+  public datosPost;
   constructor(private animalService: AnimalService) {
 
   }
 
   aut(){
     this.animalService.aut()
+    this.logged = true;
+    this.getAnimals();
   }
 
   getAnimals(){
@@ -23,13 +27,21 @@ export class AnimalesComponent implements OnInit {
     })
     
   }
+
+  addAnimal(animalType, animalRace, profile,animalState, animalName, animalColor, animalAge, animalGenre, vaccinated, description){
+    this.animalService.postAnimal(animalType, animalRace, profile, animalState, animalName, animalColor, animalAge, animalGenre, vaccinated, description).subscribe(
+      data=> {
+        this.datosPost=data;
+      })
+    //this.getAnimals();  
+  }
   
   onSelect(userid){
      this.selectuserid=userid;
   }
 
   ngOnInit() {
-    this.getAnimals();
+    this.aut();
   }
 
 }

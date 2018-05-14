@@ -7,6 +7,7 @@ from oauth2_provider.views.generic import ProtectedResourceView
 import json 
 from django.core.serializers.json import DjangoJSONEncoder
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 from models import *
 
@@ -18,7 +19,7 @@ class animals(ProtectedResourceView):
 
 
 class user(ProtectedResourceView):
-	def get(request):
+	def get(self, request):
 		#import ipdb;ipdb.set_trace()
 		queryset = Profile.objects.filter(**request.GET.dict()).values()
 		lista = list(queryset)
@@ -35,7 +36,7 @@ class user(ProtectedResourceView):
 
 
 class cities(ProtectedResourceView):
-	def get(request):
+	def get(self, request):
 		query = Country.objects.all().values()
 		country_list = list(query)
 		for country in country_list:
@@ -45,7 +46,7 @@ class cities(ProtectedResourceView):
 
 
 class animal_type(ProtectedResourceView):
-	def get(request):
+	def get(self, request):
 		query = AnimalType.objects.all().values()
 		tipes = list(query)
 		for tipo in tipes:
@@ -55,16 +56,16 @@ class animal_type(ProtectedResourceView):
 
 
 class animal_image(ProtectedResourceView):
-	def get(request):
+	def get(self, request):
 		import ipdb;ipdb.set_trace()
 		queryset = AnimalImage.objects.filter(request.GET[animal_id]).values()
 		return HttpResponse(queryset)
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class newAnimal(ProtectedResourceView):
-	@csrf_exempt
-	def post(request):
-		#import ipdb;ipdb.set_trace()
+	def post(self, request):
+		import ipdb;ipdb.set_trace()
 		new_animal=Animal()
 		new_animal.animal_type_id = request.POST['animal_type']
 		new_animal.race_id = request.POST['race']
@@ -80,9 +81,9 @@ class newAnimal(ProtectedResourceView):
 		return HttpResponse(status=200)
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class registration(ProtectedResourceView):
-	@csrf_exempt
-	def post(request):
+	def post(self, request):
 		#import ipdb;ipdb.set_trace()
 		new_user=User()
 		new_user.username = request.POST['username']
