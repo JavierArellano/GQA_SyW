@@ -8,8 +8,13 @@ import { AnimalService } from '../animal.service';
 })
 export class AnimalesComponent implements OnInit {
   public animales;
+  public selectuserid;
   constructor(private animalService: AnimalService) {
 
+  }
+
+  aut(){
+    this.animalService.aut()
   }
 
   getAnimals(){
@@ -19,11 +24,8 @@ export class AnimalesComponent implements OnInit {
     
   }
   
-  getUserAnimals(id){
-    this.animalService.getUserAnimals(id).subscribe(data=> {
-        this.animales=data;
-    })
-    
+  onSelect(userid){
+     this.selectuserid=userid;
   }
 
   ngOnInit() {

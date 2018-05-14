@@ -3,6 +3,7 @@ decorator==4.3.0
 Django==1.10
 django-cors-headers==2.2.0
 django-jet==1.0.7
+django-oauth-toolkit==1.0.0
 easy-thumbnails==2.5
 enum34==1.1.6
 ipdb==0.11
