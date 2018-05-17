@@ -11,14 +11,39 @@ export class AnimalesComponent implements OnInit {
   public selectuserid;
   public logged;
   public datosPost;
+  public regPost;
   constructor(private animalService: AnimalService) {
 
   }
 
   aut(){
-    this.animalService.aut()
-    this.logged = true;
-    this.getAnimals();
+    localStorage.setItem('user', 'anon');
+    this.animalService.aut({username:'anon',password:'anonimous'})
+  }
+
+  login(user,pass){
+    this.animalService.aut({username:user,password:pass});
+    localStorage.removeItem('user')
+    if (!localStorage.getItem('user')) {
+      this.logged = true;
+      this.getAnimals();
+    }
+  }
+
+  register(username,password,email,first_name,last_name,city){
+    let data = {
+      "username": String(username),
+      "password": String(password),
+      "email": String(email),
+      "first_name": String(first_name),
+      "last_name": String(last_name),
+      "city": String(city)
+    }
+    let user = JSON.stringify(data);
+    this.animalService.register(user).subscribe(
+      data=> {
+        this.regPost=data;
+      })
   }
 
   getAnimals(){

@@ -24,7 +24,7 @@ export class AuthService {
     return this.authenticated;
   }
 
-  authenticate() {
+  authenticate(user: any) {
 
     // curl -X POST -d "client_id=<client_id>&client_secret=<client_secret>&grant_type=password&username=<user_name>&password=<password>" http://localhost:8000/auth/token
 
@@ -32,8 +32,8 @@ export class AuthService {
       'grant_type': 'password',
       'client_id': 'QziqygUeN9sOZNfn7UzsoVzJxJSmNh98EvobaEhY',
       'client_secret': 'pytNUOoYHf0qq0oFb5ZqfOQNTlpOU7S7mItBAAhA6RKcQIzsdFj1VxuzDikdG9KpCICS7kYF3gB2Ux6r7mHdlAZ90WSwEJl7P01sRCyR1OWguDajuyCXbglaFFkXGzfr',
-      'username': 'pepa',
-      'password': 'qwerty1234'
+      'username': user.username,
+      'password': user.password
     };
 
     const url = `http://127.0.0.1:8000/auth/token/`;

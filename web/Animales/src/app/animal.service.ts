@@ -10,18 +10,28 @@ export class AnimalService {
 
   constructor(private http: Http, private authService: AuthService) { }
 
-  aut(){
-  	this.authService.authenticate();
+  aut(user: any){
+  	this.authService.authenticate(user);
+  }
+  isAuthenticated(){
+  	this.authService.isAuthenticated()
+  }
+  register(body:any){
+  	console.log(body)
+    return this.http.post("http://127.0.0.1:8000/registro", body, this.authService.getHeaders())
+      .map((response: Response) => response.json());
   }
 
   getAnimals(){
   	return this.http.get("http://127.0.0.1:8000/animal/", this.authService.getHeaders())
       .map((response: Response) => response.json());
   }
+
   getUserAnimals(id){
   	return this.http.get("http://127.0.0.1:8000/user?user_id="+id, this.authService.getHeaders())
       .map((response: Response) => response.json());
   }
+
   postAnimal(animalType, animalRace, profile, animalState, animalName, animalColor, animalAge, animalGenre, vaccinated, description){
     let data = {
 	    "animal_type": String(animalType),

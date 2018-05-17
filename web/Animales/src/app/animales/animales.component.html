@@ -1,5 +1,40 @@
+<div *ngIf="!logged">
+	<div>
+		<p>Registro</p>
+	  <label><br>Nombre de Usuario:
+	    <input #usern required />
+	    <br>Contraseña:
+	    <input #passw type="password" required>
+	    <br>Email:
+	    <input #email type="email" required>
+	    <br>Nombre:
+	    <input #first_name>
+		<br>Apellidos:
+	    <input #last_name>
+	    <br>Ciudad:
+	    <input #city type="hidden" value="1">
+	  </label>
+	  <br><button (click)="register(usern.value,passw.value,email.value,first_name.value,last_name.value,city.value);">
+	    Registro
+	  </button>
+	</div>
+	<br><hr><br>
+	<div>
+		<p>Login</p>
+		<label>
+		<br>Nombre de Usuario:
+		<input #username>
+		<br>Contraseña:
+		<input #password type="password">
+		</label>
+		<br><button (click)="login(username.value,password.value);">
+	    Log In
+	  </button>
+	</div>
+</div>
 <div *ngIf="logged">
 	<div>
+		<p>Añadir animal</p>
   <label><br>Nombre Animal:
     <input #animalName />
     <input #animalType type="hidden" value="1">

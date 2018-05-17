@@ -10,6 +10,5 @@ urlpatterns = [
     url(r'^nuevo_animal', views.newAnimal.as_view(), name='newAnimal'),
     url(r'^tipo', views.animal_type.as_view(), name='tipo'),
     url(r'^registro', views.registration.as_view(), name='registration'),
-    url(r'^login', views.login.as_view(), name='login'),
     url(r'^ciudades', views.cities.as_view(), name='cities'),
 ]

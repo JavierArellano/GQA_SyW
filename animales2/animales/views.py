@@ -86,26 +86,13 @@ class newAnimal(ProtectedResourceView):
 class registration(ProtectedResourceView):
 	def post(self, request):
 		#import ipdb;ipdb.set_trace()
-		new_user=User()
-		new_user.username = request.POST['username']
-		new_user.password = request.POST['password']
-		new_user.email = request.POST['email']
-		new_user.first_name = request.POST['first_name']
-		new_user.last_name = request.POST['last_name']
+		data = json.loads(request.body)
+		city_id = data['city']
+		del data['city']
+		new_user=User.objects.create_user(**data)
 		new_user.save()
 		profile = Profile()
 		profile.user_id = new_user.id
-		profile.city_id = request.POST['city']
+		profile.city_id = city_id
 		profile.save()
 		return HttpResponse(status=200)
-		
-
-class login(ProtectedResourceView):
-	@csrf_exempt
-	def post(request):
-		import ipdb;ipdb.set_trace()
-		user = authenticate(username='algo', password='1234')
-		if user is not None:
-			return HttpResponse(status=200)
-		else:
-			return HttpResponse(status=401)
