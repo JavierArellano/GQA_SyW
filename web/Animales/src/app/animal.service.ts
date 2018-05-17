@@ -32,22 +32,10 @@ export class AnimalService {
       .map((response: Response) => response.json());
   }
 
-  postAnimal(animalType, animalRace, profile, animalState, animalName, animalColor, animalAge, animalGenre, vaccinated, description){
-    let data = {
-	    "animal_type": String(animalType),
-	    "race": String(animalRace),
-	    "profile": String(profile),
-	    "state": String(animalState),
-	    "name": String(animalName),
-	    "color": String(animalColor),
-	    "age": String(animalAge),
-	    "genre": String(animalGenre),
-	    "vaccinated": String(vaccinated),
-	    "description": String(description)
-	}
-    let body = JSON.stringify(data);
-  	console.log(body);
-    return this.http.post("http://127.0.0.1:8000/nuevo_animal", body, this.authService.getHeaders())
+  postAnimal(datos){
+    
+  	console.log(datos);
+    return this.http.post("http://127.0.0.1:8000/nuevo_animal", datos, this.authService.getHeaders())
       .map((response: Response) => response.json());
   }
 }

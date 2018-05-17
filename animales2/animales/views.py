@@ -13,7 +13,8 @@ from models import *
 
 class animals(ProtectedResourceView):
 	def get(self, request, *args, **kwargs):
-		queryset = Animal.objects.filter(**request.GET.dict()).values('name', 'state', 'animal_type', 'race', 'profile', 'color', 'age', 'genre', 'vaccinated', 'description') 
+		#import ipdb;ipdb.set_trace()
+		queryset = Animal.objects.filter(**request.GET.dict()).values('id','name', 'state', 'animal_type', 'race', 'profile', 'color', 'age', 'genre', 'vaccinated', 'description') 
 		serialized_q = json.dumps(list(queryset), cls=DjangoJSONEncoder)
 		return HttpResponse(serialized_q)
 
@@ -58,7 +59,7 @@ class animal_type(ProtectedResourceView):
 class animal_image(ProtectedResourceView):
 	def get(self, request):
 		import ipdb;ipdb.set_trace()
-		queryset = AnimalImage.objects.filter(request.GET[animal_id]).values()
+		queryset = AnimalImage.objects.filter(request.GET['animal_id']).values()
 		return HttpResponse(queryset)
 
 
@@ -79,6 +80,25 @@ class newAnimal(ProtectedResourceView):
 		new_animal.vaccinated = data['vaccinated']
 		new_animal.description = data['description']
 		new_animal.save()
+		return HttpResponse(status=200)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class editAnimal(ProtectedResourceView):
+	def post(self, request):
+		import ipdb;ipdb.set_trace()
+		data = json.loads(request.body)
+		animal = Animal.objects.get(id=data['id'])
+		animal.animal_type_id = data['animal_type']
+		animal.race_id = data['race']
+		animal.profile_id =data['profile']
+		animal.state = data['state']
+		animal.name = data['name']
+		animal.color = data['color']
+		animal.age = data['age']
+		animal.genre = data['genre']
+		animal.vaccinated = data['vaccinated']
+		animal.description = data['description']
+		animal.save()
 		return HttpResponse(status=200)
 
 

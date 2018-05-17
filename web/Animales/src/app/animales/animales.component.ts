@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Input, ViewChild } from '@angular/core';
 import { AnimalService } from '../animal.service';
 
 @Component({
@@ -7,11 +7,16 @@ import { AnimalService } from '../animal.service';
   styleUrls: ['./animales.component.css']
 })
 export class AnimalesComponent implements OnInit {
+  @Input() multiple: boolean = false;
+  @ViewChild('fileInput') inputEl: ElementRef;
   public animales;
   public selectuserid;
   public logged;
   public datosPost;
   public regPost;
+
+
+
   constructor(private animalService: AnimalService) {
 
   }
@@ -51,14 +56,6 @@ export class AnimalesComponent implements OnInit {
         this.animales=data;
     })
     
-  }
-
-  addAnimal(animalType, animalRace, profile,animalState, animalName, animalColor, animalAge, animalGenre, vaccinated, description){
-    this.animalService.postAnimal(animalType, animalRace, profile, animalState, animalName, animalColor, animalAge, animalGenre, vaccinated, description).subscribe(
-      data=> {
-        this.datosPost=data;
-      })
-    //this.getAnimals();  
   }
   
   onSelect(userid){

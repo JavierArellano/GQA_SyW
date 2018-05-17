@@ -33,27 +33,10 @@
 	</div>
 </div>
 <div *ngIf="logged">
-	<div>
-		<p>Añadir animal</p>
-  <label><br>Nombre Animal:
-    <input #animalName />
-    <input #animalType type="hidden" value="1">
-    <input #animalRace type="hidden" value="1">
-    <input #profile type="hidden" value="1">
-    <input #animalState type="hidden" value="Perdido">
-    <br>Color Animal:
-    <input #animalColor>
-    <br>Edad Animal:
-    <input #animalAge>
-    <input #animalGenre type="hidden" value="Macho">
-    <input #vaccinated type="hidden" value="False">
-    <br>Descripcion:
-    <input #description>
-  </label>
-  <br><button (click)="addAnimal(animalType.value, animalRace.value, profile.value, animalState.value, animalName.value, animalColor.value, animalAge.value, animalGenre.value, vaccinated.value, description.value);">
-    add
-  </button>
-</div>
+<br>
+<app-nuevo-animal></app-nuevo-animal>
+<br><hr><br>
+
 <div *ngIf="animales">
 	<div *ngFor="let animal of animales">
 	    <h2>{{ animal.name | uppercase }} Details</h2>

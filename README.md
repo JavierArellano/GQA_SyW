@@ -12,6 +12,7 @@
 # Doc
 
 * http://localhost:8000/animal - GET - obtener todos los animales
+* http://localhost:8000/ciudades - GET - obtener todos los paises con sus ciudades
 * http://localhost:8000/user?user_id=X - GET - obtiene un user
 * http://localhost:8000/tipo - GET - obtiene todos los tipos de animal y las razas de cada tipo.
 

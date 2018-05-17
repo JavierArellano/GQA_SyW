@@ -10,6 +10,7 @@ import { AnimalesComponent } from './animales/animales.component';
 import { AnimalService } from './animal.service';
 import { AuthService } from './auth0.service';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { NuevoAnimalComponent } from './nuevo-animal/nuevo-animal.component';
 
 
 
@@ -17,7 +18,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     declarations: [
         AppComponent,
         AnimalesComponent,
-        UserDetailComponent
+        UserDetailComponent,
+        NuevoAnimalComponent
     ],
     imports: [
         BrowserModule,
