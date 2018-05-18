@@ -13,12 +13,19 @@ export class AnimalService {
   aut(user: any){
   	this.authService.authenticate(user);
   }
+  
   isAuthenticated(){
   	this.authService.isAuthenticated()
   }
+
   register(body:any){
   	console.log(body)
     return this.http.post("http://127.0.0.1:8000/registro", body, this.authService.getHeaders())
+      .map((response: Response) => response.json());
+  }
+
+  getUser() {
+    return this.http.get("http://127.0.0.1:8000/yo", this.authService.getHeaders())
       .map((response: Response) => response.json());
   }
 

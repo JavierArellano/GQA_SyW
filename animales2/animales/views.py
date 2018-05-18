@@ -7,6 +7,7 @@ from oauth2_provider.views.generic import ProtectedResourceView
 import json 
 from django.core.serializers.json import DjangoJSONEncoder
 from django.views.decorators.csrf import csrf_exempt
+from django.views import View
 from django.utils.decorators import method_decorator
 
 from models import *
@@ -18,6 +19,12 @@ class animals(ProtectedResourceView):
 		serialized_q = json.dumps(list(queryset), cls=DjangoJSONEncoder)
 		return HttpResponse(serialized_q)
 
+class yo(ProtectedResourceView):
+	def get(self, request, *args, **kwargs):
+		import ipdb;ipdb.set_trace()
+		queryset = Animal.objects.filter(**request.GET.dict()).values('id','name', 'state', 'animal_type', 'race', 'profile', 'color', 'age', 'genre', 'vaccinated', 'description') 
+		serialized_q = json.dumps(list(queryset), cls=DjangoJSONEncoder)
+		return HttpResponse(serialized_q)
 
 class user(ProtectedResourceView):
 	def get(self, request):
@@ -103,7 +110,7 @@ class editAnimal(ProtectedResourceView):
 
 
 @method_decorator(csrf_exempt, name='dispatch')
-class registration(ProtectedResourceView):
+class registration(View):
 	def post(self, request):
 		#import ipdb;ipdb.set_trace()
 		data = json.loads(request.body)

@@ -21,11 +21,6 @@ export class AnimalesComponent implements OnInit {
 
   }
 
-  aut(){
-    localStorage.setItem('user', 'anon');
-    this.animalService.aut({username:'anon',password:'anonimous'})
-  }
-
   login(user,pass){
     this.animalService.aut({username:user,password:pass});
     localStorage.removeItem('user')
@@ -62,8 +57,12 @@ export class AnimalesComponent implements OnInit {
      this.selectuserid=userid;
   }
 
+  yo(){
+    this.animalService.getUser().subscribe(data=> {
+    })
+  }
   ngOnInit() {
-    this.aut();
+    this.yo();
   }
 
 }
