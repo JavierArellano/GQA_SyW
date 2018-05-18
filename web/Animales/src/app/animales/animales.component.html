@@ -1,4 +1,5 @@
 <div *ngIf="!logged">
+
 	<div>
 		<p>Registro</p>
 	  <label><br>Nombre de Usuario:
@@ -33,6 +34,12 @@
 	</div>
 </div>
 <div *ngIf="logged">
+	<div>
+		<p>TESTEO</p>
+	<button (click)="yo()">
+		test
+	</button>
+	</div>
 <br>
 <app-nuevo-animal></app-nuevo-animal>
 <br><hr><br>

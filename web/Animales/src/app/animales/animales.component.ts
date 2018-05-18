@@ -62,7 +62,6 @@ export class AnimalesComponent implements OnInit {
     })
   }
   ngOnInit() {
-    this.yo();
   }
 
 }
