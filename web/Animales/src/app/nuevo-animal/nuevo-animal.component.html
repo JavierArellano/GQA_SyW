@@ -4,7 +4,6 @@
     <input #animalName />
     <input #animalType type="hidden" value="1">
     <input #animalRace type="hidden" value="1">
-    <input #profile type="hidden" value="1">
     <input #animalState type="hidden" value="Perdido">
     <br>Color Animal:
     <input #animalColor>
@@ -12,12 +11,10 @@
     <input #animalAge>
     <input #animalGenre type="hidden" value="Macho">
     <input #vaccinated type="hidden" value="False">
-    <br>Foto:
-    <input #foto type="file" placeholder="Foto">
     <br>Descripcion:
     <input #description>
   </label>
-  <br><button (click)="addAnimal(animalType.value, animalRace.value, profile.value, animalState.value, animalName.value, animalColor.value, animalAge.value, animalGenre.value, vaccinated.value, description.value);">
+  <br><button (click)="addAnimal(animalType.value, animalRace.value, animalState.value, animalName.value, animalColor.value, animalAge.value, animalGenre.value, vaccinated.value, description.value);">
     add
   </button>
 </div>

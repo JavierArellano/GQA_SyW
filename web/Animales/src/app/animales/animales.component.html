@@ -1,5 +1,4 @@
 <div *ngIf="!logged">
-
 	<div>
 		<p>Registro</p>
 	  <label><br>Nombre de Usuario:
@@ -43,7 +42,7 @@
 <br>
 <app-nuevo-animal></app-nuevo-animal>
 <br><hr><br>
-
+<button (click)="getAnimals()">Cargar Animales</button>
 <div *ngIf="animales">
 	<div *ngFor="let animal of animales">
 	    <h2>{{ animal.name | uppercase }} Details</h2>

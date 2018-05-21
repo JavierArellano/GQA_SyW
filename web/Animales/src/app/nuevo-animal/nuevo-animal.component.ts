@@ -13,11 +13,10 @@ export class NuevoAnimalComponent implements OnInit {
 
   constructor(private animalService: AnimalService) { }
 
-  addAnimal(animalType, animalRace, profile,animalState, animalName, animalColor, animalAge, animalGenre, vaccinated, description){
+  addAnimal(animalType, animalRace, animalState, animalName, animalColor, animalAge, animalGenre, vaccinated, description){
     let data = {
 	    "animal_type": String(animalType),
 	    "race": String(animalRace),
-	    "profile": String(profile),
 	    "state": String(animalState),
 	    "name": String(animalName),
 	    "color": String(animalColor),
@@ -28,7 +27,9 @@ export class NuevoAnimalComponent implements OnInit {
 	}
     let body = JSON.stringify(data);
     console.log(body);
-    this.upload(body);
+    this.animalService.postAnimal(body).subscribe(
+      data=> {
+      })
   }
 
   upload(body) {

@@ -40,7 +40,6 @@ export class AnimalService {
   }
 
   postAnimal(datos){
-    
   	console.log(datos);
     return this.http.post("http://127.0.0.1:8000/nuevo_animal", datos, this.authService.getHeaders())
       .map((response: Response) => response.json());

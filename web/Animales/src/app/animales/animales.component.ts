@@ -26,7 +26,6 @@ export class AnimalesComponent implements OnInit {
     localStorage.removeItem('user')
     if (!localStorage.getItem('user')) {
       this.logged = true;
-      this.getAnimals();
     }
   }
 
@@ -62,6 +61,9 @@ export class AnimalesComponent implements OnInit {
     })
   }
   ngOnInit() {
+    if (localStorage.getItem('access_token')) {
+      this.logged = true;
+    }
   }
 
 }
