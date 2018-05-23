@@ -11,11 +11,6 @@ from django.views import View
 from django.utils.decorators import method_decorator
 
 
-from rest_framework.parsers import FormParser, MultiPartParser
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
-
 from models import *
 
 class animals(ProtectedResourceView):
@@ -72,7 +67,8 @@ class animal_type(ProtectedResourceView):
 class animal_image(ProtectedResourceView):
 	def get(self, request):
 		import ipdb;ipdb.set_trace()
-		queryset = AnimalImage.objects.filter(request.GET['animal_id']).values()
+		lista = list(AnimalImage.objects.filter(animal_id=request.GET['animal_id']).values())
+		queryset = json.dumps(lista, cls=DjangoJSONEncoder)
 		return HttpResponse(queryset)
 
 
@@ -97,12 +93,11 @@ class newAnimal(ProtectedResourceView):
 
 @method_decorator(csrf_exempt, name='dispatch')
 class XMLnewAnimal(ProtectedResourceView):
-
-	parser_classes = (FormParser, MultiPartParser,)
-	def post(self, request, format=None):
+	def post(self, request):
+		from django.core.files.base import ContentFile
+		import base64
+		import uuid
 		import ipdb;ipdb.set_trace()
-		y = 'algooooo'
-		z = 'yo que seee'
 		data = json.loads(request.body)
 		new_animal=Animal()
 		new_animal.animal_type_id = data['animal_type']
@@ -116,7 +111,38 @@ class XMLnewAnimal(ProtectedResourceView):
 		new_animal.vaccinated = data['vaccinated']
 		new_animal.description = data['description']
 		new_animal.save()
+
+		data2 = self.decoder(data['image'])
+
+		new_animal_image = AnimalImage()
+		new_animal_image.image = data2
+		new_animal_image.animal_id = new_animal.id
+		new_animal_image.save()
+
 		return HttpResponse(status=200)
+
+	def decoder(self, file):
+		from django.core.files.base import ContentFile
+		import base64
+		import uuid
+
+		try:
+			decoded_file = base64.b64decode(file['value'])
+		except TypeError:
+			self.fail('invalid_image')
+
+		# Generate file name:
+		file_name = str(uuid.uuid4())[:12] # 12 characters are more than enough.
+		# Get the file name extension:
+		file_extension = self.extension(file['filetype'])
+
+		complete_file_name = "%s.%s" % (file_name, file_extension, )
+		data = ContentFile(decoded_file, name=complete_file_name)
+		return data
+
+	def extension(self, filetype):
+		extension = filetype.split('/')[1]
+		return extension
 
 @method_decorator(csrf_exempt, name='dispatch')
 class editAnimal(ProtectedResourceView):

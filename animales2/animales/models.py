@@ -124,7 +124,7 @@ class AnimalImage(models.Model):
         blank=False, null=True, related_name='images')
 
     def __unicode__(self):
-        return self.id
+        return str(self.id)
 
     class Meta:
         verbose_name=u'Imágen'
