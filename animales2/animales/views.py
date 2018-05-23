@@ -10,6 +10,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views import View
 from django.utils.decorators import method_decorator
 
+
+from rest_framework.parsers import FormParser, MultiPartParser
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+
 from models import *
 
 class animals(ProtectedResourceView):
@@ -74,6 +80,29 @@ class animal_image(ProtectedResourceView):
 class newAnimal(ProtectedResourceView):
 	def post(self, request):
 		import ipdb;ipdb.set_trace()
+		data = json.loads(request.body)
+		new_animal=Animal()
+		new_animal.animal_type_id = data['animal_type']
+		new_animal.race_id = data['race']
+		new_animal.profile_id = Profile.objects.filter(user_id=request.user.id)[0].id
+		new_animal.state = data['state']
+		new_animal.name = data['name']
+		new_animal.color = data['color']
+		new_animal.age = data['age']
+		new_animal.genre = data['genre']
+		new_animal.vaccinated = data['vaccinated']
+		new_animal.description = data['description']
+		new_animal.save()
+		return HttpResponse(status=200)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class XMLnewAnimal(ProtectedResourceView):
+
+	parser_classes = (FormParser, MultiPartParser,)
+	def post(self, request, format=None):
+		import ipdb;ipdb.set_trace()
+		y = 'algooooo'
+		z = 'yo que seee'
 		data = json.loads(request.body)
 		new_animal=Animal()
 		new_animal.animal_type_id = data['animal_type']

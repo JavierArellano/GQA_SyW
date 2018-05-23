@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { AnimalService } from '../animal.service';
 
 @Component({
@@ -7,8 +7,6 @@ import { AnimalService } from '../animal.service';
   styleUrls: ['./animales.component.css']
 })
 export class AnimalesComponent implements OnInit {
-  @Input() multiple: boolean = false;
-  @ViewChild('fileInput') inputEl: ElementRef;
   public animales;
   public selectuserid;
   public logged;
@@ -54,6 +52,12 @@ export class AnimalesComponent implements OnInit {
   
   onSelect(userid){
      this.selectuserid=userid;
+  }
+
+  deleteAnimal(id){
+    let data = JSON.stringify({"id":id})
+    this.animalService.deleteAnimal(data).subscribe(data=> {
+    })
   }
 
   yo(){

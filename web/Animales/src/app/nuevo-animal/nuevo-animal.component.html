@@ -1,14 +1,61 @@
 <div>
 		<p>Añadir animal</p>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <br>
+      <label for="type">Tipo de Animal</label>
+      <select class="form-control" id="type" [(ngModel)]="tipoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeType($event.target.value)">
+        <option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.species}}</option>
+      </select>
+      <br>
+      <label for="race">Raza</label>
+      <select class="form-control" id="race" [(ngModel)]="razaObj" [ngModelOptions]="{standalone: true}" (change)="onChangeRace($event.target.value)">
+        <option *ngFor="let raza of razas" [value]="raza.id">{{raza.name}}</option>
+      </select>
+      <br>
+      <label for="state">Estado</label>
+      <select class="form-control" id="state" [(ngModel)]="estadoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeState($event.target.value)">
+        <option *ngFor="let estado of estados" [value]="estado">{{estado}}</option>
+      </select>
+      <br>
+      <label for="name">Nombre</label>
+      <input type="text" class="form-control" id="name" placeholder="Kitty" formControlName="name">
+      <br>
+      <label for="color">Color</label>
+      <input type="text" class="form-control" id="color" placeholder="Marron" formControlName="color">
+      <br>
+      <label for="age">Edad</label>
+      <input type="text" class="form-control" id="age" placeholder="3 Meses" formControlName="age">
+      <br>
+      <div>
+        <label for="genre">Sexo</label><br>
+        <input type="radio" class="form-control" id="genre" formControlName="genre" value="Macho">Macho <br>
+        <input type="radio" class="form-control" id="genre" formControlName="genre" value="Hembra">Hembra <br>
+        <input type="radio" class="form-control" id="genre" formControlName="genre" value="Otro">Otro <br>
+      </div>
+      <br>
+      <label for="vaccinated">Vacunado</label>
+      <input type="checkbox" class="form-control" id="vaccinated" formControlName="vaccinated" value="True">
+      <br>
+      <label for="description">Descripción</label>
+      <input type="text" class="form-control" id="description" placeholder="Descripción" formControlName="description">
+      <br>
+    </div>
+    <div class="form-group">
+      <br>
+      <label for="imagen">Imagen</label>
+      <input type="file" id="imagen" (change)="onFileChange($event)" #fileInput>
+      <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear File</button>
+    </div>
+    <button type="submit" [disabled]="False" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
+  </form>
+
+
+
+
+<!--
   <label><br>Nombre Animal:
-    <input #animalName />
-    <input #animalType type="hidden" value="1">
-    <input #animalRace type="hidden" value="1">
-    <input #animalState type="hidden" value="Perdido">
-    <br>Color Animal:
-    <input #animalColor>
-    <br>Edad Animal:
-    <input #animalAge>
     <input #animalGenre type="hidden" value="Macho">
     <input #vaccinated type="hidden" value="False">
     <br>Descripcion:
@@ -16,5 +63,5 @@
   </label>
   <br><button (click)="addAnimal(animalType.value, animalRace.value, animalState.value, animalName.value, animalColor.value, animalAge.value, animalGenre.value, vaccinated.value, description.value);">
     add
-  </button>
+  </button>-->
 </div>

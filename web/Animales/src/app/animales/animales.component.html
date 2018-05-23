@@ -50,6 +50,7 @@
 		<div><span>Nombre: </span>{{animal.name}}</div>
 		<div><span>Descripcion: </span>{{animal.description}}</div>
 		<div (click)="onSelect(animal.profile)"><span>Usuario: </span>{{animal.profile}}</div>
+		<button (click)="deleteAnimal(animal.id)">Borrar</button>
 	</div>
 
 
