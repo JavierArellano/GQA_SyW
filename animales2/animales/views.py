@@ -133,7 +133,6 @@ class editAnimal(ProtectedResourceView):
 		animal = Animal.objects.get(id=data['id'])
 		animal.animal_type_id = data['animal_type']
 		animal.race_id = data['race']
-		animal.profile_id = Profile.objects.filter(user_id=request.user.id)[0].id
 		animal.state = data['state']
 		animal.name = data['name']
 		animal.color = data['color']
@@ -142,7 +141,40 @@ class editAnimal(ProtectedResourceView):
 		animal.vaccinated = data['vaccinated']
 		animal.description = data['description']
 		animal.save()
+
+		if data['image']:
+			AnimalImage.objects.filter(animal_id=animal.id).delete()
+			data2 = self.decoder(data['image'])
+
+			new_animal_image = AnimalImage()
+			new_animal_image.image = data2
+			new_animal_image.animal_id = animal.id
+			new_animal_image.save()
+
 		return HttpResponse(status=200)
+
+	def decoder(self, file):
+		from django.core.files.base import ContentFile
+		import base64
+		import uuid
+
+		try:
+			decoded_file = base64.b64decode(file['value'])
+		except TypeError:
+			self.fail('invalid_image')
+
+		# Generate file name:
+		file_name = str(uuid.uuid4())[:12] # 12 characters are more than enough.
+		# Get the file name extension:
+		file_extension = self.extension(file['filetype'])
+
+		complete_file_name = "%s.%s" % (file_name, file_extension, )
+		data = ContentFile(decoded_file, name=complete_file_name)
+		return data
+
+	def extension(self, filetype):
+		extension = filetype.split('/')[1]
+		return extension
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -151,6 +183,7 @@ class deleteAnimal(ProtectedResourceView):
 		#import ipdb;ipdb.set_trace()
 		data = json.loads(request.body)
 		Animal.objects.get(id=data['id']).delete()
+		AnimalImage.objects.filter(animal_id=request.GET['animal_id']).delete()
 		return HttpResponse(status=200)
 
 
