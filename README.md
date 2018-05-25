@@ -13,7 +13,7 @@
 
 * http://localhost:8000/animal - GET - obtener todos los animales
 * http://localhost:8000/ciudades - GET - obtener todos los paises con sus ciudades NO NECESITA TOKEN
-* http://localhost:8000/user?user_id=X - GET - obtiene un user
+* http://localhost:8000/user - GET - obtiene tu user
 * http://localhost:8000/imagen?animal_id=X - GET - obtiene la imagen del animal NO NECESITA TOKEN
 * http://localhost:8000/tipo - GET - obtiene todos los tipos de animal y las razas de cada tipo.
 

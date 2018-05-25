@@ -40,7 +40,7 @@ export class AnimalService {
   }
 
   getUser() {
-    return this.http.get("http://127.0.0.1:8000/yo", this.authService.getHeaders())
+    return this.http.get("http://127.0.0.1:8000/user", this.authService.getHeaders())
       .map((response: Response) => response.json());
   }
 

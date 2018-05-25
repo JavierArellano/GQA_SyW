@@ -31,13 +31,15 @@ class yo(ProtectedResourceView):
 class user(ProtectedResourceView):
 	def get(self, request):
 		#import ipdb;ipdb.set_trace()
-		queryset = Profile.objects.filter(**request.GET.dict()).values()
+		queryset = Profile.objects.filter(user_id=request.user.id).values()
 		lista = list(queryset)
 		algo=list(User.objects.filter(id=lista[0]['user_id']).values('username','email','first_name','last_name'))
 		lista[0]['user']=algo[0]
 		algo=list(City.objects.filter(id=lista[0]['city_id']).values())
 		lista[0]['ciudad']=algo[0]
-		algo=list(Country.objects.filter(id=algo[0]['country_id']))
+		cid = algo[0]['country_id']
+		del algo[0]['country_id']
+		algo=list(Country.objects.filter(id=cid).values())
 		lista[0]['pais']=algo[0]
 		del lista[0]['user_id']
 		del lista[0]['city_id']
