@@ -30,15 +30,6 @@ export class AnimalService {
       .map((response: Response) => response.json());
   }
 
-  getImage(id){
-    return this.http.get("http://127.0.0.1:8000/imagen?animal_id="+id, this.authService.getHeaders())
-      .map((response: Response) => response.json());
-  }
-  getPhoto(url){
-    return this.http.get("http://127.0.0.1:8000/"+url, this.authService.getHeaders())
-      .map((response: Response) => response.json());
-  }
-
   getUser() {
     return this.http.get("http://127.0.0.1:8000/user", this.authService.getHeaders())
       .map((response: Response) => response.json());
@@ -49,18 +40,22 @@ export class AnimalService {
       .map((response: Response) => response.json());
   }
 
+  getCyties() {
+    return this.http.get("http://127.0.0.1:8000/ciudades", this.authService.getHeaders())
+      .map((response: Response) => response.json());
+  }
+
   getAnimals(){
   	return this.http.get("http://127.0.0.1:8000/animal/", this.authService.getHeaders())
       .map((response: Response) => response.json());
   }
 
   getUserAnimals(id){
-  	return this.http.get("http://127.0.0.1:8000/animal?user_id="+id, this.authService.getHeaders())
+  	return this.http.get("http://127.0.0.1:8000/animal?profile_id="+id, this.authService.getHeaders())
       .map((response: Response) => response.json());
   }
 
   postAnimal(form){
-    //let formData = this.prepareSave(form);
     return this.http.post("http://127.0.0.1:8000/nuevo_animal", form, this.authService.getHeaders())
       .map((response: Response) => response.json());
   }
