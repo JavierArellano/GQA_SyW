@@ -7,7 +7,6 @@ from animales import views
 
 
 urlpatterns = [
-    url(r'^yo', views.yo.as_view(), name='yo'),
     url(r'^animal', views.animals.as_view(), name='animals'),
     url(r'^imagen', views.animal_image.as_view(), name='image'),
     url(r'^user', views.user.as_view(), name='user'),

@@ -21,12 +21,6 @@ class animals(ProtectedResourceView):
 		serialized_q = json.dumps(list(queryset), cls=DjangoJSONEncoder)
 		return HttpResponse(serialized_q)
 
-class yo(ProtectedResourceView):
-	def get(self, request, *args, **kwargs):
-		import ipdb;ipdb.set_trace()
-		queryset = Animal.objects.filter(**request.GET.dict()).values('id','name', 'state', 'animal_type', 'race', 'profile', 'color', 'age', 'genre', 'vaccinated', 'description') 
-		serialized_q = json.dumps(list(queryset), cls=DjangoJSONEncoder)
-		return HttpResponse(serialized_q)
 
 class user(ProtectedResourceView):
 	def get(self, request):
