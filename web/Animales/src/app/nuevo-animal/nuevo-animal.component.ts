@@ -26,7 +26,7 @@ export class NuevoAnimalComponent implements OnInit {
 
   createForm(){
     this.form = this.fb.group({
-      "type": null,
+      "animal_type": null,
       "race": null,
       "state": null,
       "name": '',
@@ -39,27 +39,9 @@ export class NuevoAnimalComponent implements OnInit {
     });
   }
 
-  addAnimal(animalType, animalRace, animalState, animalName, animalColor, animalAge, animalGenre, vaccinated, description){
-    let data = {
-	    "animal_type": String(animalType),
-	    "race": String(animalRace),
-	    "state": String(animalState),
-	    "name": String(animalName),
-	    "color": String(animalColor),
-	    "age": String(animalAge),
-	    "genre": String(animalGenre),
-	    "vaccinated": String(vaccinated),
-	    "description": String(description)
-	  }
-    let body = JSON.stringify(data);
-    console.log(body);
-    this.animalService.postAnimal(body).subscribe(
-      data=> {
-      })
-  }
   onChangeType(tipo){
     this.razas = this.tipos[tipo-1].race;
-    this.form.get('type').setValue(tipo);
+    this.form.get('animal_type').setValue(tipo);
   }
 
   onChangeRace(raza){ 
@@ -69,12 +51,19 @@ export class NuevoAnimalComponent implements OnInit {
   onChangeState(state){
     this.form.get('state').setValue(state);
   }
-
-  onFileChange(event){
-    if ( event.target.files.length > 0 ) {
-      let file = event.target.files[0];  
-      this.form.get('image').setValue(file);
-      console.log(this.form);
+  
+  onFileChange(event) {
+    let reader = new FileReader();
+    if(event.target.files && event.target.files.length > 0) {
+      let file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.form.get('image').setValue({
+          filename: file.name,
+          filetype: file.type,
+          value: reader.result.split(',')[1]
+        })
+      };
     }
   }
 

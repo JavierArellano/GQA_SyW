@@ -43,6 +43,13 @@ export class AnimalesComponent implements OnInit {
       })
   }
 
+  photoAnimal(id){
+    this.animalService.getImage(id).subscribe(data=> {
+      let url = data.image
+      this.animalService.getPhoto(url).subscribe(data=> {})
+    })
+  }
+
   getAnimals(){
     this.animalService.getAnimals().subscribe(data=> {
         this.animales=data;

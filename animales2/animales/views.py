@@ -44,7 +44,7 @@ class user(ProtectedResourceView):
 		return HttpResponse(serialized_q)
 
 
-class cities(ProtectedResourceView):
+class cities(View):
 	def get(self, request):
 		query = Country.objects.all().values()
 		country_list = list(query)
@@ -64,10 +64,13 @@ class animal_type(ProtectedResourceView):
 		return HttpResponse(serialized_q)
 
 
-class animal_image(ProtectedResourceView):
+class animal_image(View):
 	def get(self, request):
-		import ipdb;ipdb.set_trace()
+		#import ipdb;ipdb.set_trace()
 		lista = list(AnimalImage.objects.filter(animal_id=request.GET['animal_id']).values())
+		if len(lista)>0:
+			nombre,extension = lista[0]['image'].split('.')
+			return HttpResponse(open("media/"+lista[0]['image']),content_type="image/"+extension)
 		queryset = json.dumps(lista, cls=DjangoJSONEncoder)
 		return HttpResponse(queryset)
 
@@ -75,7 +78,7 @@ class animal_image(ProtectedResourceView):
 @method_decorator(csrf_exempt, name='dispatch')
 class newAnimal(ProtectedResourceView):
 	def post(self, request):
-		import ipdb;ipdb.set_trace()
+		#import ipdb;ipdb.set_trace()
 		data = json.loads(request.body)
 		new_animal=Animal()
 		new_animal.animal_type_id = data['animal_type']
@@ -89,35 +92,13 @@ class newAnimal(ProtectedResourceView):
 		new_animal.vaccinated = data['vaccinated']
 		new_animal.description = data['description']
 		new_animal.save()
-		return HttpResponse(status=200)
+		if data['image']:
+			data2 = self.decoder(data['image'])
 
-@method_decorator(csrf_exempt, name='dispatch')
-class XMLnewAnimal(ProtectedResourceView):
-	def post(self, request):
-		from django.core.files.base import ContentFile
-		import base64
-		import uuid
-		import ipdb;ipdb.set_trace()
-		data = json.loads(request.body)
-		new_animal=Animal()
-		new_animal.animal_type_id = data['animal_type']
-		new_animal.race_id = data['race']
-		new_animal.profile_id = Profile.objects.filter(user_id=request.user.id)[0].id
-		new_animal.state = data['state']
-		new_animal.name = data['name']
-		new_animal.color = data['color']
-		new_animal.age = data['age']
-		new_animal.genre = data['genre']
-		new_animal.vaccinated = data['vaccinated']
-		new_animal.description = data['description']
-		new_animal.save()
-
-		data2 = self.decoder(data['image'])
-
-		new_animal_image = AnimalImage()
-		new_animal_image.image = data2
-		new_animal_image.animal_id = new_animal.id
-		new_animal_image.save()
+			new_animal_image = AnimalImage()
+			new_animal_image.image = data2
+			new_animal_image.animal_id = new_animal.id
+			new_animal_image.save()
 
 		return HttpResponse(status=200)
 

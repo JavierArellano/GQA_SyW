@@ -46,6 +46,7 @@
 <div *ngIf="animales">
 	<div *ngFor="let animal of animales">
 	    <h2>{{ animal.name | uppercase }} Details</h2>
+	    <img src="http://127.0.0.1:8000/imagen?animal_id={{animal.id}}">
 		<div><span>Estado: </span>{{animal.state}}</div>
 		<div><span>Nombre: </span>{{animal.name}}</div>
 		<div><span>Descripcion: </span>{{animal.description}}</div>
