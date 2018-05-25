@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from oauth2_provider.views.generic import ProtectedResourceView
 import json 
+import os
 from django.core.serializers.json import DjangoJSONEncoder
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
@@ -143,6 +144,9 @@ class editAnimal(ProtectedResourceView):
 		animal.save()
 
 		if data['image']:
+			lista = list(AnimalImage.objects.filter(animal_id=animal.id).values())
+			if len(lista)>0:
+				os.remove("media/"+lista[0]['image'])
 			AnimalImage.objects.filter(animal_id=animal.id).delete()
 			data2 = self.decoder(data['image'])
 
@@ -180,10 +184,12 @@ class editAnimal(ProtectedResourceView):
 @method_decorator(csrf_exempt, name='dispatch')
 class deleteAnimal(ProtectedResourceView):
 	def post(self, request):
-		#import ipdb;ipdb.set_trace()
+		import ipdb;ipdb.set_trace()
 		data = json.loads(request.body)
+		lista = list(AnimalImage.objects.filter(animal_id=data['id']).values())
+		if len(lista)>0:
+			os.remove("media/"+lista[0]['image'])
 		Animal.objects.get(id=data['id']).delete()
-		AnimalImage.objects.filter(animal_id=request.GET['animal_id']).delete()
 		return HttpResponse(status=200)
 
 
