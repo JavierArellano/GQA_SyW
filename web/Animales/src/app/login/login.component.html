@@ -1,0 +1,69 @@
+<!--Page Title-->
+    <section class="page-title" style="background-image:url(assets/images/background/7.jpg)">
+    	<div class="auto-container">
+        	<div class="clearfix">
+            	<div class="pull-left">
+                	<h1>Login</h1>
+                </div>
+                <div class="pull-right">
+                    <ul class="page-breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li>login</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Page Title-->
+    <div class="sidebar-page-container">
+        <div class="auto-container">
+            <div class="row clearfix">
+    <div id="login" class="ptb ptb-xs-40 page-signin">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+        	<div class="main-body">
+        	  <div class="body-inner">
+        	    <div class="card bg-white">
+        	      <div class="card-content">
+        	        <section class="logo text-center">
+        	          <!--Sec Title-->
+                        <div class="sec-title centered">
+                            <div class="separator">
+                                <span class="icon flaticon-pawprint-1"></span>
+                            </div>
+                            <div class="title">Because We Really Care About Your Pets</div>
+                            <h2>Login</h2>
+                        </div>
+        	        </section>
+        	        <form class="form-horizontal ng-pristine ng-valid">
+        	          <fieldset>
+        	            <div class="form-group">
+        	              <div class="ui-input-group">
+        	                <input #username type="text" required="" class="form-control">
+        	                <span class="input-bar"></span>
+        	                <label>Username</label>
+        	              </div>
+        	            </div>
+        	            <div class="form-group">
+        	              <div class="ui-input-group">
+        	                <input #password type="password" required="" class="form-control">
+        	                <span class="input-bar"></span>
+        	                <label>Password</label>
+        	              </div>
+        	            </div>
+        	          </fieldset>
+        	        </form>
+        	      </div>
+        	      <div class="card-action no-border text-right"> <a (click)="login(username.value,password.value);" class="color-primary">Sign in</a> </div>
+        	    </div>
+        	    <div class="additional-info"> <a routerLink="/signup" routerLinkActive="active">Register</a><span class="divider-h"></span><a href="#/page/forgot-password">Forgot your password?</a> </div>
+        	  </div>
+        	</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>

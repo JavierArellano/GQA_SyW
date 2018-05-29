@@ -1,0 +1,102 @@
+<!--Page Title-->
+        <section class="page-title" style="background-image:url(assets/images/background/7.jpg)">
+            <div class="auto-container">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <h1>Register</h1>
+                    </div>
+                    <div class="pull-right">
+                        <ul class="page-breadcrumb">
+                            <li><a href="index.html">Home</a></li>
+                            <li>register</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--End Page Title-->
+        <div class="sidebar-page-container">
+            <div class="auto-container">
+                <div class="row clearfix">
+                    <div id="login" class="ptb ptb-xs-40 page-signin">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="main-body">
+                                        <div class="body-inner">
+                                            <div class="card bg-white">
+                                                <div class="card-content">
+                                                    <section class="logo text-center">
+                                                        <!--Sec Title-->
+                                                        <div class="sec-title centered">
+                                                            <div class="separator">
+                                                                <span class="icon flaticon-pawprint-1"></span>
+                                                            </div>
+                                                            <div class="title">Because We Really Care About Your Pets</div>
+                                                            <h2>Register</h2>
+                                                        </div>
+                                                    </section>
+                                                    <form class="form-horizontal ng-pristine ng-valid">
+                                                        <fieldset>
+                                                            <div class="form-group">
+                                                                <div class="ui-input-group">
+                                                                    <input #usern type="text" required="" class="form-control">
+                                                                    <span class="input-bar"></span>
+                                                                    <label>Your username</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="ui-input-group">
+                                                                    <input #email type="text" required="" class="form-control">
+                                                                    <span class="input-bar"></span>
+                                                                    <label>Your email</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="ui-input-group">
+                                                                    <input #first_name type="text" required="" class="form-control">
+                                                                    <span class="input-bar"></span>
+                                                                    <label>First name</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="ui-input-group">
+                                                                    <input #last_name type="text" required="" class="form-control">
+                                                                    <span class="input-bar"></span>
+                                                                    <label>Last name</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="ui-input-group">
+                                                                    <input #passw type="text" required="" class="form-control">
+                                                                    <span class="input-bar"></span>
+                                                                    <label>Your password </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="ui-input-group">
+                                                                    <input type="text" required="" class="form-control">
+                                                                    <span class="input-bar"></span>
+                                                                    <label>Please confirm your password </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="spacer"></div>
+                                                            <div class="form-group checkbox-field">
+                                                                <label for="check_box" class="text-small">
+                                                                    <input type="checkbox" id="check_box">
+                                                                    <span class="ion-ios-checkmark-empty22 custom-check"></span> By clicking on sign up, you agree to <a href="javascript:;"><i>terms</i></a> and <a href="javascript:;"><i>privacy policy</i></a></label>
+                                                            </div>
+                                                        </fieldset>
+                                                    </form>
+                                                </div>
+                                                <div class="card-action no-border text-right"> <a routerLink="/signin" routerLinkActive="active">Login</a><a (click)="register(usern.value,passw.value,email.value,first_name.value,last_name.value);" class="color-primary">Sign Up</a> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

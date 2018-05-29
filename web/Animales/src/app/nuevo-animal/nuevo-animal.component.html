@@ -1,67 +1,123 @@
-<div>
-		<p>Añadir animal</p>
-
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <br>
-      <label for="type">Tipo de Animal</label>
-      <select class="form-control" id="type" [(ngModel)]="tipoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeType($event.target.value)">
-        <option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.species}}</option>
-      </select>
-      <br>
-      <label for="race">Raza</label>
-      <select class="form-control" id="race" [(ngModel)]="razaObj" [ngModelOptions]="{standalone: true}" (change)="onChangeRace($event.target.value)">
-        <option *ngFor="let raza of razas" [value]="raza.id">{{raza.name}}</option>
-      </select>
-      <br>
-      <label for="state">Estado</label>
-      <select class="form-control" id="state" [(ngModel)]="estadoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeState($event.target.value)">
-        <option *ngFor="let estado of estados" [value]="estado">{{estado}}</option>
-      </select>
-      <br>
-      <label for="name">Nombre</label>
-      <input type="text" class="form-control" id="name" placeholder="Kitty" formControlName="name">
-      <br>
-      <label for="color">Color</label>
-      <input type="text" class="form-control" id="color" placeholder="Marron" formControlName="color">
-      <br>
-      <label for="age">Edad</label>
-      <input type="text" class="form-control" id="age" placeholder="3 Meses" formControlName="age">
-      <br>
-      <div>
-        <label for="genre">Sexo</label><br>
-        <input type="radio" class="form-control" id="genre" formControlName="genre" value="Macho">Macho <br>
-        <input type="radio" class="form-control" id="genre" formControlName="genre" value="Hembra">Hembra <br>
-        <input type="radio" class="form-control" id="genre" formControlName="genre" value="Otro">Otro <br>
-      </div>
-      <br>
-      <label for="vaccinated">Vacunado</label>
-      <input type="checkbox" class="form-control" id="vaccinated" formControlName="vaccinated" value="True">
-      <br>
-      <label for="description">Descripción</label>
-      <input type="text" class="form-control" id="description" placeholder="Descripción" formControlName="description">
-      <br>
+<!--Page Title-->
+<section class="page-title" style="background-image:url(assets/images/background/7.jpg)">
+    <div class="auto-container">
+        <div class="clearfix">
+            <div class="pull-left">
+                <h1>Add Animal</h1>
+            </div>
+            <div class="pull-right">
+                <ul class="page-breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li>add animal</li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-      <br>
-      <label for="imagen">Imagen</label>
-      <input type="file" id="imagen" (change)="onFileChange($event)" #fileInput>
-      <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear File</button>
+</section>
+<!--End Page Title-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div id="login" class="ptb ptb-xs-40 page-signin">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="main-body">
+                                <div class="body-inner">
+                                    <div class="card bg-white">
+                                        <div class="card-content">
+                                            <section class="logo text-center">
+                                                <!--Sec Title-->
+                                                <div class="sec-title centered">
+                                                    <div class="separator">
+                                                        <span class="icon flaticon-pawprint-1"></span>
+                                                    </div>
+                                                    <div class="title">Because We Really Care About Your Pets</div>
+                                                    <h2>Add Animal</h2>
+                                                </div>
+                                            </section>
+                                            <form class="form-horizontal ng-pristine ng-valid" [formGroup]="form" (ngSubmit)="onSubmit()">
+                                              <fieldset>
+                                                <div class="form-group">
+                                                  <div class="ui-input-group">
+                                                    <select class="form-control" id="type" [(ngModel)]="tipoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeType($event.target.value)">
+                                                      <option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.species}}</option>
+                                                    </select>
+                                                    <label>Tipo de Animal</label>
+                                                  </div>
+                                                </div>
+                                                <div class="form-group">
+                                                  <div class="ui-input-group">
+                                                    <select class="form-control" id="race" [(ngModel)]="razaObj" [ngModelOptions]="{standalone: true}" (change)="onChangeRace($event.target.value)">
+                                                      <option *ngFor="let raza of razas" [value]="raza.id">{{raza.name}}</option>
+                                                    </select>
+                                                    <label>Raza</label>
+                                                  </div>
+                                                </div>
+                                                <div class="form-group">
+                                                  <div class="ui-input-group">
+                                                    <select class="form-control" id="state" [(ngModel)]="estadoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeState($event.target.value)">
+                                                      <option *ngFor="let estado of estados" [value]="estado">{{estado}}</option>
+                                                    </select>
+                                                    <label>Estado</label>
+                                                  </div>
+                                                </div>
+                                                <div class="form-group">
+                                                  <div class="ui-input-group">
+                                                    <input type="text" class="form-control" id="name" formControlName="name">
+                                                    <span class="input-bar"></span>
+                                                    <label>Nombre</label>
+                                                  </div>
+                                                </div>
+                                                <div class="form-group">
+                                                  <div class="ui-input-group">
+                                                    <input type="text" class="form-control" id="color" formControlName="color">
+                                                    <span class="input-bar"></span>
+                                                    <label>Color</label>
+                                                  </div>
+                                                </div>
+                                                <div class="form-group">
+                                                  <div class="ui-input-group">
+                                                    <input type="text" class="form-control" id="age" formControlName="age">
+                                                    <span class="input-bar"></span>
+                                                    <label>Edad</label>
+                                                  </div>
+                                                </div>
+                                                <div class="form-group">
+                                                  <div class="ui-input-group">
+                                                    <label for="genre">Sexo</label><br>
+                                                    <input type="radio" class="form-control" id="genre" formControlName="genre" value="Macho">Macho <br>
+                                                    <input type="radio" class="form-control" id="genre" formControlName="genre" value="Hembra">Hembra <br>
+                                                    <input type="radio" class="form-control" id="genre" formControlName="genre" value="Otro">Otro <br>
+                                                  </div>
+                                                </div>
+                                                <div class="form-group checkbox-field">
+                                                  <input type="checkbox" class="form-control" id="check_box" formControlName="vaccinated" value="True">
+                                                  <label for="check_box" class="text-small">Vacunado</label>
+                                                </div>
+                                                <div class="form-group">
+                                                  <div class="ui-input-group">
+                                                    <input type="text" class="form-control" id="description" placeholder="Descripción" formControlName="description">
+                                                    <span class="input-bar"></span>
+                                                    <label>Descripción</label>
+                                                  </div>
+                                                </div>
+                                                <div class="form-group">
+                                                  <input type="file" id="imagen" (change)="onFileChange($event)" #fileInput>
+                                                  <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear File</button>
+                                                  <label>Imagen</label>
+                                                </div>
+                                              </fieldset>
+                                            </form>
+                                          </div>
+                                        <div class="card-action no-border text-right"> <a routerLink="/signin" routerLinkActive="active">Login</a><a (click)="onSubmit();" class="color-primary">Add Animal</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <button type="submit" [disabled]="False" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
-  </form>
-
-
-
-
-<!--
-  <label><br>Nombre Animal:
-    <input #animalGenre type="hidden" value="Macho">
-    <input #vaccinated type="hidden" value="False">
-    <br>Descripcion:
-    <input #description>
-  </label>
-  <br><button (click)="addAnimal(animalType.value, animalRace.value, animalState.value, animalName.value, animalColor.value, animalAge.value, animalGenre.value, vaccinated.value, description.value);">
-    add
-  </button>-->
 </div>
