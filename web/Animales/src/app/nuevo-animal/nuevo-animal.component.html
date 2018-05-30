@@ -8,7 +8,7 @@
             <div class="pull-right">
                 <ul class="page-breadcrumb">
                     <li><a href="index.html">Home</a></li>
-                    <li>add animal</li>
+                    <li>Add Animal</li>
                 </ul>
             </div>
         </div>
@@ -39,65 +39,62 @@
                                             <form class="form-horizontal ng-pristine ng-valid" [formGroup]="form" (ngSubmit)="onSubmit()">
                                               <fieldset>
                                                 <div class="form-group">
-                                                  <div class="ui-input-group">
-                                                    <select class="form-control" id="type" [(ngModel)]="tipoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeType($event.target.value)">
+                                                    <select class="custom-select-box" required id="type" [(ngModel)]="tipoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeType($event.target.value)">
                                                       <option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.species}}</option>
                                                     </select>
                                                     <label>Tipo de Animal</label>
-                                                  </div>
+                                                  
                                                 </div>
                                                 <div class="form-group">
-                                                  <div class="ui-input-group">
-                                                    <select class="form-control" id="race" [(ngModel)]="razaObj" [ngModelOptions]="{standalone: true}" (change)="onChangeRace($event.target.value)">
+                                                    <select class="custom-select-box" required id="race" [(ngModel)]="razaObj" [ngModelOptions]="{standalone: true}" (change)="onChangeRace($event.target.value)">
                                                       <option *ngFor="let raza of razas" [value]="raza.id">{{raza.name}}</option>
                                                     </select>
                                                     <label>Raza</label>
-                                                  </div>
+                                                  
                                                 </div>
                                                 <div class="form-group">
-                                                  <div class="ui-input-group">
-                                                    <select class="form-control" id="state" [(ngModel)]="estadoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeState($event.target.value)">
+                                                    <select class="custom-select-box" required id="state" [(ngModel)]="estadoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeState($event.target.value)">
                                                       <option *ngFor="let estado of estados" [value]="estado">{{estado}}</option>
                                                     </select>
                                                     <label>Estado</label>
-                                                  </div>
+                                                  
                                                 </div>
                                                 <div class="form-group">
                                                   <div class="ui-input-group">
-                                                    <input type="text" class="form-control" id="name" formControlName="name">
+                                                    <input type="text" class="form-control" required="" formControlName="name">
                                                     <span class="input-bar"></span>
                                                     <label>Nombre</label>
                                                   </div>
                                                 </div>
                                                 <div class="form-group">
                                                   <div class="ui-input-group">
-                                                    <input type="text" class="form-control" id="color" formControlName="color">
+                                                    <input type="text" class="form-control" required="" formControlName="color">
                                                     <span class="input-bar"></span>
                                                     <label>Color</label>
                                                   </div>
                                                 </div>
                                                 <div class="form-group">
                                                   <div class="ui-input-group">
-                                                    <input type="text" class="form-control" id="age" formControlName="age">
+                                                    <input type="text" class="form-control" required="" formControlName="age">
                                                     <span class="input-bar"></span>
                                                     <label>Edad</label>
                                                   </div>
                                                 </div>
                                                 <div class="form-group">
-                                                  <div class="ui-input-group">
                                                     <label for="genre">Sexo</label><br>
-                                                    <input type="radio" class="form-control" id="genre" formControlName="genre" value="Macho">Macho <br>
-                                                    <input type="radio" class="form-control" id="genre" formControlName="genre" value="Hembra">Hembra <br>
-                                                    <input type="radio" class="form-control" id="genre" formControlName="genre" value="Otro">Otro <br>
-                                                  </div>
+                                                    <input type="radio" id="genre" formControlName="genre" value="Macho">Macho <br>
+                                                    <input type="radio" id="genre" formControlName="genre" value="Hembra">Hembra <br>
+                                                    <input type="radio" id="genre" formControlName="genre" value="Otro" checked>Otro <br>
+                                                  
                                                 </div>
                                                 <div class="form-group checkbox-field">
-                                                  <input type="checkbox" class="form-control" id="check_box" formControlName="vaccinated" value="True">
-                                                  <label for="check_box" class="text-small">Vacunado</label>
+                                                  <label for="check_box" class="text-small">
+                                                    <input type="checkbox" id="check_box" formControlName="vaccinated"><span class="ion-ios-checkmark-empty22 custom-check"></span>Vacunado
+                                                  </label>
                                                 </div>
                                                 <div class="form-group">
                                                   <div class="ui-input-group">
-                                                    <input type="text" class="form-control" id="description" placeholder="Descripción" formControlName="description">
+                                                    <input type="text" class="form-control" required="" formControlName="description">
                                                     <span class="input-bar"></span>
                                                     <label>Descripción</label>
                                                   </div>

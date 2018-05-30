@@ -67,7 +67,7 @@ export class AnimalesComponent implements OnInit {
   }
   ngOnInit() {
     if (localStorage.getItem('access_token')) {
-      this.logged = true;
+      this.getAnimals();
     }
   }
 

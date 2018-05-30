@@ -1,17 +1,100 @@
-<div *ngIf="logged">
-<button (click)="getAnimals()">Cargar Animales</button>
-<div *ngIf="animales">
-	<div *ngFor="let animal of animales">
-	    <h2>{{ animal.name | uppercase }} Details</h2>
-	    <img src="http://127.0.0.1:8000/imagen?animal_id={{animal.id}}">
-		<div><span>Estado: </span>{{animal.state}}</div>
-		<div><span>Nombre: </span>{{animal.name}}</div>
-		<div><span>Descripcion: </span>{{animal.description}}</div>
-		<button (click)="onSelect(animal.profile)"><span>Usuario: </span>{{animal.profile}}</button>
-		<button (click)="deleteAnimal(animal.id)">Borrar</button>
-	</div>
+<!--Pets Box-->
+<section class="pets-box">
+	<div class="auto-container">
+    	<div class="inner-container" style="background-image:url(assets/images/background/11.png)">
+        	<h2>Find Your Pet</h2>
+            
+            <!-- Pets Form -->
+            <div class="pets-search-form">
+                <!--Form-->
+                <form method="post" action="pets.html">
+                    
+                    <div class="row clearfix">
+                        
+                        <!--Form Group-->
+                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                            <select class="custom-select-box" required>
+                                <option>Select Pet Type</option>
+                                <option>One</option>
+                                <option>Two</option>
+                                <option>Three</option>
+                                <option>Four</option>
+                            </select>
+                        </div>
+                        
+                        <!--Form Group-->
+                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                            <select class="custom-select-box" required>
+                                <option>Select Breeds (Optional)</option>
+                                <option>One</option>
+                                <option>Two</option>
+                                <option>Three</option>
+                                <option>Four</option>
+                            </select>
+                        </div>
+                        
+                        <!--Form Group-->
+                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                            <select class="custom-select-box" required>
+                                <option>Enter City/ZipCode</option>
+                                <option>100000</option>
+                                <option>200000</option>
+                                <option>300000</option>
+                                <option>400000</option>
+                            </select>
+                        </div>
+                        
+                        <!--Form Group-->
+                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                            <button class="theme-btn btn-style-two" type="submit" name="submit-form">Search Now</button>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<!--End Pets Box-->
 
+<!--Pets Container-->
+<section class="pets-container">
+	<div class="auto-container">
+    	<h2>We ‘ve These Great Pets for You, Ready to Adopt ...</h2>
+        <div class="row clearfix">
+        	<div *ngFor="let animal of animales">
 
-	<app-user-detail [userid]="selectuserid"></app-user-detail>
-</div>
-</div>
+			<!--Pets Block-->
+            <div class="pet-block col-md-4 col-sm-6 col-xs-12">
+            	<div class="inner-box">
+                	<div class="image">
+                    	<img src="http://127.0.0.1:8000/imagen?animal_id={{animal.id}}" alt="" />
+                        <!--Overlay Box-->
+                        <div class="overlay-box">
+                            <div class="overlay-inner">
+                                <div class="content">
+                                	<ul>
+                                    	<li><a href="pet-detail.html">view detail</a></li>
+                                        <li class="share"><a href="pet-detail.html"><span class="fa fa-share-alt"></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lower-content">
+                    	<h3><a href="pet-detail.html">{{animal.name}}</a></h3>
+                        <ul>
+                        	<li>{{animal.age}} {{animal.genre}}</li>
+                            <li>{{animal.color}} {{animal.race}}</li>
+                            <li>Hollywood, FL</li>
+                        </ul>
+                        <a href="pet-detail.html" class="theme-btn btn-style-eight">adopt me</a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Pets Container-->
