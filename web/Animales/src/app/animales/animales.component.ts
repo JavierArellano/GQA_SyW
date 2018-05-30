@@ -19,31 +19,6 @@ export class AnimalesComponent implements OnInit {
 
   }
 
-  login(user,pass){
-    this.animalService.aut({username:user,password:pass});
-    localStorage.removeItem('user')
-    if (!localStorage.getItem('user')) {
-      this.logged = true;
-    }
-  }
-
-  register(username,password,email,first_name,last_name,city){
-    let data = {
-      "username": String(username),
-      "password": String(password),
-      "email": String(email),
-      "first_name": String(first_name),
-      "last_name": String(last_name),
-      "city": String(city)
-    }
-    let user = JSON.stringify(data);
-    this.animalService.register(user).subscribe(
-      data=> {
-        this.regPost=data;
-      })
-  }
-
-
   getAnimals(){
     this.animalService.getAnimals().subscribe(data=> {
         this.animales=data;

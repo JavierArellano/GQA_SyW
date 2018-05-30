@@ -1,3 +1,21 @@
+<!--Page Title-->
+<section class="page-title" style="background-image:url(assets/images/background/7.jpg)">
+	<div class="auto-container">
+    	<div class="clearfix">
+        	<div class="pull-left">
+            	<h1>Adopt a Pet</h1>
+            </div>
+            <div class="pull-right">
+                <ul class="page-breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li>Adopt a Pet</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Page Title-->
+
 <!--Pets Box-->
 <section class="pets-box">
 	<div class="auto-container">
@@ -57,44 +75,55 @@
     </div>
 </section>
 <!--End Pets Box-->
-
+<div *ngIf="r">
 <!--Pets Container-->
 <section class="pets-container">
 	<div class="auto-container">
     	<h2>We ‘ve These Great Pets for You, Ready to Adopt ...</h2>
         <div class="row clearfix">
-        	<div *ngFor="let animal of animales">
+        	
+            <!--Sidebar Page Container-->
 
-			<!--Pets Block-->
-            <div class="pet-block col-md-4 col-sm-6 col-xs-12">
-            	<div class="inner-box">
-                	<div class="image">
-                    	<img src="http://127.0.0.1:8000/imagen?animal_id={{animal.id}}" alt="" />
-                        <!--Overlay Box-->
-                        <div class="overlay-box">
-                            <div class="overlay-inner">
-                                <div class="content">
-                                	<ul>
-                                    	<li><a routerLink="/animal/detail/{{animal.id}}" routerLinkActive="active">view detail</a></li>
-                                        <li class="share"><a href="pet-detail.html"><span class="fa fa-share-alt"></span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+            <!--Content Side / Blog Single-->
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <section class="slider">
+                    <div id="petcarousel" class="flexslider">
+                          <ul class="slides">
+                            
+                            <li>
+                                <img src="http://127.0.0.1:8000/imagen?animal_id={{animal.id}}">
+                            </li>
+                            
+                          </ul>
                     </div>
-                    <div class="lower-content">
-                    	<h3><a routerLink="/animal/detail/{{animal.id}}" routerLinkActive="active">{{animal.name}}</a></h3>
-                        <ul>
-                        	<li>{{animal.age}} {{animal.genre}}</li>
-                            <li>{{animal.color}} {{animal.race}}</li>
-                            <li>Hollywood, FL</li>
-                        </ul>
-                        <a routerLink="/animal/detail/{{animal.id}}" routerLinkActive="active" class="theme-btn btn-style-eight">adopt me</a>
-                    </div>
+                </section>
+
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                
+                <div class="name">
+                        <h4>Name: <strong>{{ animal.name | uppercase }}</strong></h4>
+                    <ul  class="petdetails">
+                            <li>Age: <strong>{{animal.age}}</strong></li>
+                        
+                            <li>Gender: <strong>{{animal.genre}}</strong></li>
+                       
+                            <li>Breed: <strong>{{animal.race}}</strong></li>
+                        
+                            <li>State: <strong>{{animal.state}}</strong></li>
+                       
+                            <li>Color: <strong>{{animal.color}}</strong></li>
+                        
+                            <li>Location: <strong>Florida</strong></li>
+                        
+                    </ul>
+                    
                 </div>
+
             </div>
-            </div>
+            
         </div>
     </div>
 </section>
+</div>
 <!--End Pets Container-->

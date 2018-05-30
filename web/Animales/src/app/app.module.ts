@@ -18,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
 
 
 const appRoutes: Routes = [
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
   { path: 'signup', component: RegisterComponent },
   { path: 'new-animal', component: NuevoAnimalComponent },
   { path: 'animal', component: AnimalesComponent },
+  { path: 'animal/detail/:id', component: AnimalDetailComponent },
   //{
     //path: 'heroes',
     //component: HeroListComponent,
@@ -49,7 +51,8 @@ const appRoutes: Routes = [
         FooterComponent,
         LoginComponent,
         RegisterComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        AnimalDetailComponent
     ],
     imports: [
         RouterModule.forRoot(

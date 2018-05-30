@@ -46,7 +46,12 @@ export class AnimalService {
   }
 
   getAnimals(){
-  	return this.http.get("http://127.0.0.1:8000/animal/", this.authService.getHeaders())
+    return this.http.get("http://127.0.0.1:8000/animal/", this.authService.getHeaders())
+      .map((response: Response) => response.json());
+  }
+
+  getAnimal(id){
+  	return this.http.get("http://127.0.0.1:8000/animal?id="+id, this.authService.getHeaders())
       .map((response: Response) => response.json());
   }
 
