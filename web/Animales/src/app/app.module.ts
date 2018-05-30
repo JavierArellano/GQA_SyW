@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
+import { FooterBlackComponent } from './footer-black/footer-black.component';
 
 
 const appRoutes: Routes = [
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
         LoginComponent,
         RegisterComponent,
         PageNotFoundComponent,
-        AnimalDetailComponent
+        AnimalDetailComponent,
+        FooterBlackComponent
     ],
     imports: [
         RouterModule.forRoot(
