@@ -9,9 +9,15 @@
 * python manage.py runserver
 * http://localhost:8000/animal
 
+* Para la web, desde la ruta de Git:
+* cd web/Animales
+* ng serve
+* http://localhost:4200
+
 # Doc
 
 * http://localhost:8000/animal - GET - obtener todos los animales
+* http://localhost:8000/my_animals  - GET - obtener todos los animales del user que hace la peticion
 * http://localhost:8000/ciudades - GET - obtener todos los paises con sus ciudades NO NECESITA TOKEN
 * http://localhost:8000/user - GET - obtiene tu user
 * http://localhost:8000/imagen?animal_id=X - GET - obtiene la imagen del animal NO NECESITA TOKEN

@@ -28,6 +28,20 @@ class animals(ProtectedResourceView):
 		return HttpResponse(serialized_q)
 
 
+class myAnimals(ProtectedResourceView):
+	def get(self, request):
+		#import ipdb;ipdb.set_trace()
+		queryset = Animal.objects.filter(profile_id=Profile.objects.filter(user_id=request.user.id)[0].id).values('id','name', 'state', 'animal_type', 'race', 'profile', 'color', 'age', 'genre', 'vaccinated', 'description') 
+		respuestas = list(queryset)
+		for respuesta in respuestas:
+			tipo = AnimalType.objects.get(id=respuesta['animal_type'])
+			raza = Race.objects.get(id=respuesta['race'])
+			respuesta['race'] = raza.name
+			respuesta['animal_type'] = tipo.species
+		serialized_q = json.dumps(respuestas, cls=DjangoJSONEncoder)
+		return HttpResponse(serialized_q)
+
+
 class user(ProtectedResourceView):
 	def get(self, request):
 		#import ipdb;ipdb.set_trace()
