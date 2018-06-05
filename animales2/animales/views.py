@@ -11,10 +11,21 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views import View
 from django.utils.decorators import method_decorator
 
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+from django.core.mail import send_mail
+from animales2.settings import DEFAULT_FROM_EMAIL
+from django.db.models.query_utils import Q
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+from django.template import loader
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+
 
 from models import *
 
-class animals(ProtectedResourceView):
+
+class animals(View):
 	def get(self, request, *args, **kwargs):
 		#import ipdb;ipdb.set_trace()
 		queryset = Animal.objects.filter(**request.GET.dict()).values('id','name', 'state', 'animal_type', 'race', 'profile', 'color', 'age', 'genre', 'vaccinated', 'description') 
@@ -71,7 +82,7 @@ class cities(View):
 		return HttpResponse(serialized_q)
 
 
-class animal_type(ProtectedResourceView):
+class animal_type(View):
 	def get(self, request):
 		query = AnimalType.objects.all().values()
 		tipes = list(query)
@@ -223,3 +234,87 @@ class registration(View):
 		profile.city_id = city_id
 		profile.save()
 		return HttpResponse(status=200)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class password_reset(View):
+	def post(self, request):
+		import ipdb;ipdb.set_trace()
+		#data = json.loads(request.body)
+		datos = request.POST['email']
+		if self.validate_email_address(datos):
+			associated_users = User.objects.filter(Q(email=datos)|Q(username=datos))
+			if associated_users.exists():
+				for user in associated_users:
+					c = {
+					'email':user.email,
+					'domain':'guauqueanimales.com',
+					'site_name': 'Guau que Animales',
+					'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+					'user':user,
+					'token':default_token_generator.make_token(user),
+					'protocol':'http',
+					}
+					subject_template_name='animales/password_reset_subject.txt'
+					email_template_name='animales/password_reset_email.html'
+					subject = loader.render_to_string(subject_template_name, c)
+					subject = ''.join(subject.splitlines())
+					email = loader.render_to_string(email_template_name, c)
+					send_mail(subject, email, DEFAULT_FROM_EMAIL, [user.email], fail_silently=False)
+				return HttpResponse(status=200)
+			return HttpResponse('No user is associated with this email address.')
+		else:
+			associated_users = User.objects.filter(username=datos)
+			if associated_users.exists():
+				for user in associated_users:
+					c = {
+					'email':user.email,
+					'domain':'guauqueanimales.com',
+					'site_name': 'Guau que Animales',
+					'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+					'user':user,
+					'token':default_token_generator.make_token(user),
+					'protocol':'http',
+					}
+					subject_template_name='django/contrib/admin/templates/registration/password_reset_subject.txt'
+					email_template_name='django/contrib/admin/templates/registration/password_reset_email.html'
+					subject = loader.render_to_string(subject_template_name, c)
+					subject = ''.join(subject.splitlines())
+					email = loader.render_to_string(email_template_name, c)
+					send_mail(subject, email, DEFAULT_FROM_EMAIL, [user.email], fail_silently=False)
+				return HttpResponse(status=200)
+			return HttpResponse('No user is associated with this username.')
+
+
+	def validate_email_address(self, email):
+		try:
+			validate_email(email)
+			return True
+		except ValidationError as e:
+			return False
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class PasswordResetConfirmView(View):
+	def post(self, request, uidb64=None, token=None, *arg, **kwargs):
+		"""
+		View that checks the hash in a password reset link and presents a
+		form for entering a new password.
+		"""
+		import ipdb;ipdb.set_trace()
+		#data = json.loads(request.body)
+		UserModel = get_user_model()
+		datos = request.POST['new_password2']
+		assert uidb64 is not None and token is not None  # checked by URLconf
+		try:
+			uid = urlsafe_base64_decode(uidb64)
+			user = UserModel._default_manager.get(pk=uid)
+		except (TypeError, ValueError, OverflowError, UserModel.DoesNotExist):
+			user = None
+
+		if user is not None and default_token_generator.check_token(user, token):
+			new_password= request.POST['new_password2']
+			user.set_password(new_password)
+			user.save()
+			return HttpResponse('Password has been reset.')
+		else:
+			return HttpResponse('The reset password link is no longer valid.')

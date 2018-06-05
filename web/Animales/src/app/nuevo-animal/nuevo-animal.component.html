@@ -39,25 +39,28 @@
                                             <form class="form-horizontal ng-pristine ng-valid" [formGroup]="form" (ngSubmit)="onSubmit()">
                                               <fieldset>
                                                 <div class="form-group">
-                                                    <select class="custom-select-box" required id="type" [(ngModel)]="tipoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeType($event.target.value)">
-                                                      <option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.species}}</option>
-                                                    </select>
-                                                    <label>Tipo de Animal</label>
-                                                  
+                                                    <div class="select_option_one">
+                                                        <select class="" id="type" [(ngModel)]="tipoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeType($event.target.value)">
+                                                            <option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.species}}</option>
+                                                        </select>
+                                                        <label>Tipo de Animal</label>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <select class="custom-select-box" required id="race" [(ngModel)]="razaObj" [ngModelOptions]="{standalone: true}" (change)="onChangeRace($event.target.value)">
-                                                      <option *ngFor="let raza of razas" [value]="raza.id">{{raza.name}}</option>
-                                                    </select>
-                                                    <label>Raza</label>
-                                                  
+                                                    <div class="select_option_one">
+                                                        <select class="" id="race" [(ngModel)]="razaObj" [ngModelOptions]="{standalone: true}" (change)="onChangeRace($event.target.value)">
+                                                            <option *ngFor="let raza of razas" [value]="raza.id">{{raza.name}}</option>
+                                                        </select>
+                                                        <label>Raza</label>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <select class="custom-select-box" required id="state" [(ngModel)]="estadoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeState($event.target.value)">
-                                                      <option *ngFor="let estado of estados" [value]="estado">{{estado}}</option>
-                                                    </select>
-                                                    <label>Estado</label>
-                                                  
+                                                    <div class="select_option_one">
+                                                        <select class="" id="state" [(ngModel)]="estadoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeState($event.target.value)">
+                                                            <option *ngFor="let estado of estados" [value]="estado">{{estado}}</option>
+                                                        </select>
+                                                        <label>Estado</label>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                   <div class="ui-input-group">

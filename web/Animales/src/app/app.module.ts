@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AnimalesComponent } from './animales/animales.component';
 import { AnimalService } from './animal.service';
 import { AuthService } from './auth0.service';
+import { AuthGuard } from './auth-guard';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { NuevoAnimalComponent } from './nuevo-animal/nuevo-animal.component';
 import { HeaderComponent } from './header/header.component';
@@ -25,8 +26,8 @@ import { FooterBlackComponent } from './footer-black/footer-black.component';
 const appRoutes: Routes = [
   { path: 'signin', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },
-  { path: 'new-animal', component: NuevoAnimalComponent },
-  { path: 'animal', component: AnimalesComponent },
+  { path: 'new-animal', component: NuevoAnimalComponent, canActivate: [AuthGuard] },
+  { path: 'animal', component: AnimalesComponent},
   { path: 'animal/detail/:id', component: AnimalDetailComponent },
   //{
     //path: 'heroes',
@@ -70,6 +71,7 @@ const appRoutes: Routes = [
     providers: [
         AnimalService,
         AuthService,
+        AuthGuard,
     ],
     bootstrap: [AppComponent]
 })

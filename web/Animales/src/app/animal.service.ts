@@ -8,8 +8,7 @@ import { AuthService } from './auth0.service';
 @Injectable()
 export class AnimalService {
 
-
-  constructor(private http: Http, private http2: HttpClient,private authService: AuthService) { }
+  constructor(private http: Http, private http2: HttpClient,private authService: AuthService) {}
 
   aut(user: any){
   	this.authService.authenticate(user);
@@ -21,7 +20,7 @@ export class AnimalService {
 
   register(body:any){
   	console.log(body)
-    return this.http.post("http://127.0.0.1:8000/registro", body, this.authService.getHeaders())
+    return this.http.post("http://127.0.0.1:8000/registro", body)
       .map((response: Response) => response.json());
   }
 
@@ -36,27 +35,35 @@ export class AnimalService {
   }
 
   getRaces() {
-    return this.http.get("http://127.0.0.1:8000/tipo", this.authService.getHeaders())
+    return this.http.get("http://127.0.0.1:8000/tipo")
       .map((response: Response) => response.json());
   }
 
   getCyties() {
-    return this.http.get("http://127.0.0.1:8000/ciudades", this.authService.getHeaders())
+    return this.http.get("http://127.0.0.1:8000/ciudades")
       .map((response: Response) => response.json());
   }
 
   getAnimals(){
-    return this.http.get("http://127.0.0.1:8000/animal/", this.authService.getHeaders())
+    return this.http.get("http://127.0.0.1:8000/animal/")
       .map((response: Response) => response.json());
   }
 
   getMyAnimals(){
     return this.http.get("http://127.0.0.1:8000/my_animals/", this.authService.getHeaders())
-      .map((response: Response) => response.json());
+      .map((response: Response) => {
+        if (response.status != 200){
+          this.authService.refresh_token()
+
+        }
+        else{
+          return response.json()
+        }
+      });
   }
 
   getAnimal(id){
-  	return this.http.get("http://127.0.0.1:8000/animal?id="+id, this.authService.getHeaders())
+  	return this.http.get("http://127.0.0.1:8000/animal?id="+id)
       .map((response: Response) => response.json());
   }
 
@@ -67,6 +74,13 @@ export class AnimalService {
 
   postAnimal(form){
     return this.http.post("http://127.0.0.1:8000/nuevo_animal", form, this.authService.getHeaders())
-      .map((response: Response) => response.json());
+      .map((response: Response) => {
+        if (response.status != 200){
+          this.authService.refresh_token()
+        }
+        else{
+          response.json()
+        }
+      });
   }
 }
