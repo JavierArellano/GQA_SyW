@@ -10,6 +10,17 @@ export class AnimalService {
 
   constructor(private http: Http, private http2: HttpClient,private authService: AuthService) {}
 
+  forgot(body:any){
+    console.log(body);
+    return this.http.post("http://127.0.0.1:8000/reset/password/", body)
+      .map((response: Response) => response.json());
+  }
+  change(urldata:any, body:any){
+    console.log(body);
+    return this.http.post("http://127.0.0.1:8000/new/password/"+urldata+"/", body)
+      .map((response: Response) => response.json());
+  }
+
   aut(user: any){
   	this.authService.authenticate(user);
   }

@@ -17,6 +17,6 @@ urlpatterns = [
     url(r'^tipo', views.animal_type.as_view(), name='tipo'),
     url(r'^registro', views.registration.as_view(), name='registration'),
     url(r'^ciudades', views.cities.as_view(), name='cities'),
-    url(r'^reset_password', views.password_reset.as_view(), name='reset_password'),
-    url(r'^reset_password_confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', views.PasswordResetConfirmView.as_view(),name='reset_password_confirm'),
+    url(r'^reset/password', views.password_reset.as_view(), name='reset_password'),
+    url(r'^new/password/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', views.PasswordResetConfirmView.as_view(),name='reset_password_confirm'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

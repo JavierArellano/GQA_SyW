@@ -98,12 +98,12 @@ CSRF_COOKIE_SECURE = False
 
 #Email
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'test@gmail.com'
-SERVER_EMAIL = 'test@gmail.com'
+DEFAULT_FROM_EMAIL = 'guauqueanimal@gmail.com'
+SERVER_EMAIL = 'guauqueanimal@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'test@gmail.com'
-EMAIL_HOST_PASSWORD = 'password'
+EMAIL_HOST_USER = 'guauqueanimal@gmail.com'
+EMAIL_HOST_PASSWORD = 'qwerty,1234'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 

@@ -211,7 +211,7 @@ class editAnimal(ProtectedResourceView):
 @method_decorator(csrf_exempt, name='dispatch')
 class deleteAnimal(ProtectedResourceView):
 	def post(self, request):
-		import ipdb;ipdb.set_trace()
+		#import ipdb;ipdb.set_trace()
 		data = json.loads(request.body)
 		lista = list(AnimalImage.objects.filter(animal_id=data['id']).values())
 		if len(lista)>0:
@@ -235,19 +235,20 @@ class registration(View):
 		profile.save()
 		return HttpResponse(status=200)
 
+
 @method_decorator(csrf_exempt, name='dispatch')
 class password_reset(View):
 	def post(self, request):
-		import ipdb;ipdb.set_trace()
-		#data = json.loads(request.body)
-		datos = request.POST['email']
+		#import ipdb;ipdb.set_trace()
+		data = json.loads(request.body)
+		datos = data['email']
 		if self.validate_email_address(datos):
 			associated_users = User.objects.filter(Q(email=datos)|Q(username=datos))
 			if associated_users.exists():
 				for user in associated_users:
 					c = {
 					'email':user.email,
-					'domain':'guauqueanimales.com',
+					'domain':'127.0.0.1:4200',
 					'site_name': 'Guau que Animales',
 					'uid':urlsafe_base64_encode(force_bytes(user.pk)),
 					'user':user,
@@ -268,15 +269,15 @@ class password_reset(View):
 				for user in associated_users:
 					c = {
 					'email':user.email,
-					'domain':'guauqueanimales.com',
+					'domain':'127.0.0.1:4200',
 					'site_name': 'Guau que Animales',
 					'uid':urlsafe_base64_encode(force_bytes(user.pk)),
 					'user':user,
 					'token':default_token_generator.make_token(user),
 					'protocol':'http',
 					}
-					subject_template_name='django/contrib/admin/templates/registration/password_reset_subject.txt'
-					email_template_name='django/contrib/admin/templates/registration/password_reset_email.html'
+					subject_template_name='animales/password_reset_subject.txt'
+					email_template_name='animales/password_reset_email.html'
 					subject = loader.render_to_string(subject_template_name, c)
 					subject = ''.join(subject.splitlines())
 					email = loader.render_to_string(email_template_name, c)
@@ -300,21 +301,19 @@ class PasswordResetConfirmView(View):
 		View that checks the hash in a password reset link and presents a
 		form for entering a new password.
 		"""
-		import ipdb;ipdb.set_trace()
-		#data = json.loads(request.body)
-		UserModel = get_user_model()
-		datos = request.POST['new_password2']
+		#import ipdb;ipdb.set_trace()
+		data = json.loads(request.body)
 		assert uidb64 is not None and token is not None  # checked by URLconf
 		try:
 			uid = urlsafe_base64_decode(uidb64)
-			user = UserModel._default_manager.get(pk=uid)
-		except (TypeError, ValueError, OverflowError, UserModel.DoesNotExist):
+			user = User.objects.get(pk=uid)
+		except (TypeError, ValueError, OverflowError):
 			user = None
 
 		if user is not None and default_token_generator.check_token(user, token):
-			new_password= request.POST['new_password2']
+			new_password= data['password2']
 			user.set_password(new_password)
 			user.save()
-			return HttpResponse('Password has been reset.')
+			return HttpResponse({resp:'Password has been reset.'})
 		else:
 			return HttpResponse('The reset password link is no longer valid.')

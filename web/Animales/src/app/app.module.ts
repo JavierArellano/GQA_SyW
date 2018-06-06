@@ -21,6 +21,8 @@ import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
 import { FooterBlackComponent } from './footer-black/footer-black.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordFirstComponent } from './reset-password-first/reset-password-first.component';
 
 
 const appRoutes: Routes = [
@@ -29,6 +31,8 @@ const appRoutes: Routes = [
   { path: 'new-animal', component: NuevoAnimalComponent, canActivate: [AuthGuard] },
   { path: 'animal', component: AnimalesComponent},
   { path: 'animal/detail/:id', component: AnimalDetailComponent },
+  { path: 'reset/password', component: ResetPasswordFirstComponent },
+  { path: 'new/password/:urldata', component: ResetPasswordComponent },
   //{
     //path: 'heroes',
     //component: HeroListComponent,
@@ -55,7 +59,9 @@ const appRoutes: Routes = [
         RegisterComponent,
         PageNotFoundComponent,
         AnimalDetailComponent,
-        FooterBlackComponent
+        FooterBlackComponent,
+        ResetPasswordComponent,
+        ResetPasswordFirstComponent
     ],
     imports: [
         RouterModule.forRoot(
