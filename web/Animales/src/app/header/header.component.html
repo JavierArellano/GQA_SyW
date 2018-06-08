@@ -57,42 +57,37 @@
                         </div>
                         
                         <div class="navbar-collapse collapse clearfix">
-                            <ul class="navigation clearfix">
-                                <li class="current dropdown"><a href="#">Home</a>
-                                    
-                                </li>
-                                <li class="dropdown"><a href="about.html">About</a>
-                                    <ul>
-                                        <li><a href="about.html">About 1</a></li>
-                                        <li><a href="about-2.html">About 2</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a routerLink="/animal" routerLinkActive="active">Pets</a>
-                                </li>
-                                <li class="dropdown"><a href="404.html">Error</a></li>
-                                
-                                <li class="dropdown"><a routerLink="/signin" routerLinkActive="active">Login</a>
-                                    
-                                </li>
-                                <li class="dropdown"><a routerLink="/signup" routerLinkActive="active">Register</a>
+                       <ul *ngIf="authService.authenticated" class="navigation clearfix">
 
-                                </li> 
-                                <li class="dropdown"><a href="#">Blog</a>
-                                    <ul>
-                                        <li><a href="blog.html">Our Blog</a></li>
-                                        <li><a href="blog2.html">Blog 2</a></li>
-                                        <li><a href="blog-leftsidebar.html">Blog Left Sidebar</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="contact.html">Contact</a>
-                                    <ul>
-                                        <li><a href="contact.html">Contact 1</a></li>
-                                        <li><a href="contact2.html">Contact 2</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
+                            <li class="current dropdown"><a routerLink="/animal" routerLinkActive="active">Home</a>
+                            </li>
+
+                            <li class="dropdown"><a routerLink="/my-animals" routerLinkActive="active">My Animals</a>
+                            </li>
+                            
+                            <li class="dropdown"><a routerLink="/contact" routerLinkActive="active">Contact</a>
+                            </li>
+
+                            <li class="dropdown"><a routerLink="/new-animal" routerLinkActive="active">New Animal</a>
+                            </li>
+
+                            <li class="dropdown"><a (click)="logout()">Log Out</a>
+                            </li>
+                        </ul>
+                       <ul *ngIf="!authService.authenticated" class="navigation clearfix">
+                            <li class="current dropdown"><a routerLink="/animal" routerLinkActive="active">Home</a>
+                            </li>
+                            
+                            <li class="dropdown"><a routerLink="/contact" routerLinkActive="active">Contact</a>
+                            </li>
+
+                            <li class="dropdown"><a routerLink="/signin" routerLinkActive="active">Login</a>
+                            
+                            </li>
+                            <li class="dropdown"><a routerLink="/signup" routerLinkActive="active">Register</a>
+                            
+                            </li>
+                        </ul>                        </div>
                     </nav>
                     
                     <!-- Main Menu End-->
@@ -146,40 +141,34 @@
                     </div>
                     
                     <div class="navbar-collapse collapse clearfix">
-                       <ul class="navigation clearfix">
-                                <li class="current dropdown"><a href="#">Home</a>
-                                </li>
-                                <li class="dropdown"><a href="about.html">About</a>
-                                    <ul>
-                                        <li><a href="about.html">About 1</a></li>
-                                        <li><a href="about-2.html">About 2</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a routerLink="/animal" routerLinkActive="active">Pets</a>
-                                </li>
-                                <li class="dropdown"><a href="404.html">Error</a></li>
-                                
-                                <li class="dropdown"><a routerLink="/signin" routerLinkActive="active">Login</a>
-                                
-                                </li>
-                                <li class="dropdown"><a routerLink="/signup" routerLinkActive="active">Register</a>
-                                
-                                </li>
-                                <li class="dropdown"><a href="#">Blog</a>
-                                    <ul>
-                                        <li><a href="blog.html">Our Blog</a></li>
-                                        <li><a href="blog2.html">Blog 2</a></li>
-                                        <li><a href="blog-leftsidebar.html">Blog Left Sidebar</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="contact.html">Contact</a>
-                                    <ul>
-                                        <li><a href="contact.html">Contact 1</a></li>
-                                        <li><a href="contact2.html">Contact 2</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                       <ul *ngIf="authService.authenticated" class="navigation clearfix">
+
+                            <li class="current dropdown"><a routerLink="/animal" routerLinkActive="active">Home</a>
+                            </li>
+
+                            <li class="dropdown"><a routerLink="/my-animals" routerLinkActive="active">My Animals</a>
+                            </li>
+                            
+                            <li class="dropdown"><a routerLink="/contact" routerLinkActive="active">Contact</a>
+                            </li>
+
+                            <li class="dropdown"><a (click)="logout()">Log Out</a>
+                            </li>
+                        </ul>
+                       <ul *ngIf="!authService.authenticated" class="navigation clearfix">
+                            <li class="current dropdown"><a routerLink="/animal" routerLinkActive="active">Home</a>
+                            </li>
+                            
+                            <li class="dropdown"><a routerLink="/contact" routerLinkActive="active">Contact</a>
+                            </li>
+
+                            <li class="dropdown"><a routerLink="/signin" routerLinkActive="active">Login</a>
+                            
+                            </li>
+                            <li class="dropdown"><a routerLink="/signup" routerLinkActive="active">Register</a>
+                            
+                            </li>
+                        </ul>
                     </div>
                 </nav>
                 <!-- Main Menu End-->

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnimalService } from '../animal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +9,11 @@ import { AnimalService } from '../animal.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private animalService: AnimalService) { }
+  constructor(private animalService: AnimalService, private router: Router) { }
 
   login(user,pass){
-    this.animalService.aut({username:user,password:pass});
-    localStorage.removeItem('user')
-    if (!localStorage.getItem('user')) {
+    if (this.animalService.aut({username:user,password:pass})){
+      this.router.navigateByUrl('/animal');
     }
   }
 

@@ -7,8 +7,15 @@ import { AuthService } from './auth0.service';
 
 @Injectable()
 export class AnimalService {
-
+  logged:boolean=false;
   constructor(private http: Http, private http2: HttpClient,private authService: AuthService) {}
+
+  isLogged(){
+    return this.logged;
+  }
+  setLogged(x){
+    this.logged=x;
+  }
 
   forgot(body:any){
     console.log(body);
@@ -22,11 +29,11 @@ export class AnimalService {
   }
 
   aut(user: any){
-  	this.authService.authenticate(user);
+  	return this.authService.authenticate(user);
   }
   
   isAuthenticated(){
-  	this.authService.isAuthenticated()
+  	return this.authService.isAuthenticated()
   }
 
   register(body:any){

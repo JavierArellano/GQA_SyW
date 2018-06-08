@@ -44,6 +44,7 @@ export class AuthService {
         this.setAccessToken(response.json().access_token);
         this.setRefreshToken(response.json().refresh_token);
         this.authenticated = true;
+        return true;
       },
       (error) => {
         const error2 = 'Usuario o contraseña incorrectos';

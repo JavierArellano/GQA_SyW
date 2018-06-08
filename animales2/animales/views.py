@@ -314,6 +314,6 @@ class PasswordResetConfirmView(View):
 			new_password= data['password2']
 			user.set_password(new_password)
 			user.save()
-			return HttpResponse({resp:'Password has been reset.'})
+			return HttpResponse({'resp':'Password has been reset.'})
 		else:
 			return HttpResponse('The reset password link is no longer valid.')
