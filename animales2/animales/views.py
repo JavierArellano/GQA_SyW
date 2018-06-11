@@ -236,7 +236,7 @@ class registration(View):
 			profile.city_id = city_id
 			profile.save()
 		except IntegrityError:
-			return HttpResponse('Register Failed.')
+			return HttpResponse('Register Failed.', status=409)
 		return HttpResponse(status=200)
 
 
