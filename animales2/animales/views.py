@@ -16,6 +16,7 @@ from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from animales2.settings import DEFAULT_FROM_EMAIL
 from django.db.models.query_utils import Q
+from django.db import IntegrityError
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.template import loader
@@ -223,16 +224,19 @@ class deleteAnimal(ProtectedResourceView):
 @method_decorator(csrf_exempt, name='dispatch')
 class registration(View):
 	def post(self, request):
-		#import ipdb;ipdb.set_trace()
+		import ipdb;ipdb.set_trace()
 		data = json.loads(request.body)
 		city_id = data['city']
 		del data['city']
-		new_user=User.objects.create_user(**data)
-		new_user.save()
-		profile = Profile()
-		profile.user_id = new_user.id
-		profile.city_id = city_id
-		profile.save()
+		try:
+			new_user=User.objects.create_user(**data)
+			new_user.save()
+			profile = Profile()
+			profile.user_id = new_user.id
+			profile.city_id = city_id
+			profile.save()
+		except IntegrityError:
+			return HttpResponse('Register Failed.')
 		return HttpResponse(status=200)
 
 
