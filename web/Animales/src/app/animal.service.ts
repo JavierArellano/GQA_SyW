@@ -8,7 +8,7 @@ import { AuthService } from './auth0.service';
 @Injectable()
 export class AnimalService {
   logged:boolean=false;
-  constructor(private http: Http, private http2: HttpClient,private authService: AuthService) {}
+  constructor(private http: Http, private http2: HttpClient,public authService: AuthService) {}
 
   isLogged(){
     return this.logged;
@@ -66,6 +66,21 @@ export class AnimalService {
     return this.http.get("http://127.0.0.1:8000/animal/")
       .map((response: Response) => response.json());
   }
+  getFilterAnimals(tipo, raza, profile){
+    let tip;
+    if (tipo) {
+      tip = "animal_type="+tipo
+    }
+    if (raza<0) {
+      tip = tip+"&race="+raza
+    }
+    if (profile!=0) {
+      tip = tip+"&profile_id="+profile
+    }
+
+    return this.http.get("http://127.0.0.1:8000/animal?"+tip)
+      .map((response: Response) => response.json());
+  }
 
   getMyAnimals(){
     return this.http.get("http://127.0.0.1:8000/my_animals/", this.authService.getHeaders())
@@ -92,6 +107,17 @@ export class AnimalService {
 
   postAnimal(form){
     return this.http.post("http://127.0.0.1:8000/nuevo_animal", form, this.authService.getHeaders())
+      .map((response: Response) => {
+        if (response.status != 200){
+          this.authService.refresh_token()
+        }
+        else{
+          response.json()
+        }
+      });
+  }
+  postEditAnimal(form){
+    return this.http.post("http://127.0.0.1:8000/edit_animal", form, this.authService.getHeaders())
       .map((response: Response) => {
         if (response.status != 200){
           this.authService.refresh_token()

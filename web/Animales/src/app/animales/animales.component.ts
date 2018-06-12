@@ -12,6 +12,8 @@ export class AnimalesComponent implements OnInit {
   public logged;
   public datosPost;
   public regPost;
+  tipos;
+  razas;
 
 
 
@@ -30,9 +32,22 @@ export class AnimalesComponent implements OnInit {
      this.selectuserid=userid;
   }
 
-  deleteAnimal(id){
-    let data = JSON.stringify({"id":id})
-    this.animalService.deleteAnimal(data).subscribe(data=> {
+  onChangeType(tipo){
+    this.razas = this.tipos[tipo-1].race;;
+  }
+
+  getRaces() {
+    this.animalService.getRaces().subscribe(
+      data => {
+        this.tipos = data;
+        this.razas = data[0].race;
+      })
+  }
+
+  search(tipo, raza){
+    let profile=0;
+    this.animalService.getFilterAnimals(tipo,raza,profile).subscribe(data=> {
+        this.animales=data;
     })
   }
 
@@ -42,6 +57,8 @@ export class AnimalesComponent implements OnInit {
   }
   ngOnInit() {
     this.getAnimals();
+    this.getRaces();
+    this.animalService.authService.header('home');
   }
 
 }

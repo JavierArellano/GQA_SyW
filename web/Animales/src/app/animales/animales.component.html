@@ -7,46 +7,28 @@
             <!-- Pets Form -->
             <div class="pets-search-form">
                 <!--Form-->
-                <form method="post" action="pets.html">
+                <form>
                     
                     <div class="row clearfix">
                         
                         <!--Form Group-->
                         <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                            <select class="custom-select-box" required>
-                                <option>Select Pet Type</option>
-                                <option>One</option>
-                                <option>Two</option>
-                                <option>Three</option>
-                                <option>Four</option>
+                            <select #tipo class="custom-select-box" (change)="onChangeType($event.target.value)" required>
+                                <option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.species}}</option>
                             </select>
                         </div>
                         
                         <!--Form Group-->
                         <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                            <select class="custom-select-box" required>
-                                <option>Select Breeds (Optional)</option>
-                                <option>One</option>
-                                <option>Two</option>
-                                <option>Three</option>
-                                <option>Four</option>
+                            <select #raza class="custom-select-box" required>
+                                <option *ngFor="let raza of razas" [value]="raza.id">{{raza.name}}</option>
                             </select>
                         </div>
                         
-                        <!--Form Group-->
-                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                            <select class="custom-select-box" required>
-                                <option>Enter City/ZipCode</option>
-                                <option>100000</option>
-                                <option>200000</option>
-                                <option>300000</option>
-                                <option>400000</option>
-                            </select>
-                        </div>
                         
                         <!--Form Group-->
                         <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                            <button class="theme-btn btn-style-two" type="submit" name="submit-form">Search Now</button>
+                            <button class="theme-btn btn-style-two" type="submit" (click)="search(tipo.value, raza.value)" name="submit-form">Search Now</button>
                         </div>
                         
                     </div>

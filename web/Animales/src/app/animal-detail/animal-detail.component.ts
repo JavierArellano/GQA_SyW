@@ -25,6 +25,8 @@ export class AnimalDetailComponent implements OnInit {
         this.animal=data[0];
         this.r = true;
     })
+
+    this.animalService.authService.header('nada');
   }
 
 }

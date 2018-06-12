@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import {Observable, Subject } from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
@@ -10,6 +11,7 @@ import 'rxjs/add/operator/map';
 export class AuthService {
 
   public authenticated = false;
+  private activo: Subject<any> = new Subject<any>();
 
   constructor(
     private http: Http,
@@ -18,6 +20,13 @@ export class AuthService {
     if (token) {
       this.authenticated = true;
     }
+  }
+
+  header(atrib:string){
+    this.activo.next(atrib);
+  }
+  headerObs(): Observable<any>{
+    return this.activo.asObservable();
   }
 
   isAuthenticated() {

@@ -1,3 +1,129 @@
-<p>
-  edit-animal works!
-</p>
+<!--Page Title-->
+<section class="page-title" style="background-image:url(assets/images/background/7.jpg)">
+    <div class="auto-container">
+        <div class="clearfix">
+            <div class="pull-left">
+                <h1>Edit Animal {{animal.name}}</h1>
+            </div>
+            <div class="pull-right">
+                <ul class="page-breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li>Edit Animal {{animal.name}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Page Title-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div id="login" class="ptb ptb-xs-40 page-signin">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="main-body">
+                                <div class="body-inner">
+                                    <div class="card bg-white">
+                                        <div class="card-content">
+                                            <section class="logo text-center">
+                                                <!--Sec Title-->
+                                                <div class="sec-title centered">
+                                                    <div class="separator">
+                                                        <span class="icon flaticon-pawprint-1"></span>
+                                                    </div>
+                                                    <div class="title">Because We Really Care About Your Pets</div>
+                                                    <h2>Edit Animal {{animal.name}}</h2>
+                                                </div>
+                                            </section>
+                                            <form class="form-horizontal ng-pristine ng-valid" [formGroup]="form" (ngSubmit)="onSubmit()">
+                                              <fieldset>
+                                                <div class="form-group">
+                                                    <div class="select_option_one">
+                                                        <select class="" id="type" [(ngModel)]="tipoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeType($event.target.value)">
+                                                            <option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.species}}</option>
+                                                        </select>
+                                                        <label>Tipo de Animal</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="select_option_one">
+                                                        <select class="" id="race" [(ngModel)]="razaObj" [ngModelOptions]="{standalone: true}" (change)="onChangeRace($event.target.value)">
+                                                            <option *ngFor="let raza of razas" [value]="raza.id">{{raza.name}}</option>
+                                                        </select>
+                                                        <label>Raza</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="select_option_one">
+                                                        <select class="" id="state" [(ngModel)]="estadoObj" [ngModelOptions]="{standalone: true}" (change)="onChangeState($event.target.value)">
+                                                            <option *ngFor="let estado of estados" [value]="estado">{{estado}}</option>
+                                                        </select>
+                                                        <label>Estado</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                  <div class="ui-input-group">
+                                                    <input type="text" class="form-control" required="" formControlName="name" value="{{animal.name}}">
+                                                    <span class="input-bar"></span>
+                                                    <label>Nombre</label>
+                                                  </div>
+                                                </div>
+                                                <div class="form-group">
+                                                  <div class="ui-input-group">
+                                                    <input type="text" class="form-control" required="" formControlName="color" value="{{animal.color}}">
+                                                    <span class="input-bar"></span>
+                                                    <label>Color</label>
+                                                  </div>
+                                                </div>
+                                                <div class="form-group">
+                                                  <div class="ui-input-group">
+                                                    <input type="text" class="form-control" required="" formControlName="age" value="{{animal.age}}">
+                                                    <span class="input-bar"></span>
+                                                    <label>Edad</label>
+                                                  </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="genre">Sexo</label><br>
+                                                    <div *ngIf="animal.genre=='Macho'"><input type="radio" id="genre" formControlName="genre" value="Macho" checked="checked">Macho
+                                                    </div>
+                                                    <div *ngIf="animal.genre!='Macho'">
+                                                    <input type="radio" id="genre" formControlName="genre" value="Macho">Macho</div>
+                                                    <div *ngIf="animal.genre!='Hembra'"><input type="radio" id="genre" formControlName="genre" value="Hembra">Hembra</div><div *ngIf="animal.genre=='Hembra'">
+                                                    <input type="radio" id="genre" formControlName="genre" value="Hembra" checked>Hembra</div>
+                                                    <div *ngIf="animal.genre!='Otro'"><input type="radio" id="genre" formControlName="genre" value="Otro">Otro</div><div *ngIf="animal.genre=='Otro'">
+                                                    <input type="radio" id="genre" formControlName="genre" value="Otro" checked="checked">Otro</div>
+                                                  
+                                                </div>
+                                                <div class="form-group checkbox-field">
+                                                  <label for="check_box" class="text-small">
+                                                    <input type="checkbox" id="check_box" formControlName="vaccinated"><span class="ion-ios-checkmark-empty22 custom-check"></span>Vacunado
+                                                  </label>
+                                                </div>
+                                                <div class="form-group">
+                                                  <div class="ui-input-group">
+                                                    <input type="text" class="form-control" required="" formControlName="description" value="{{animal.description}}">
+                                                    <span class="input-bar"></span>
+                                                    <label>Descripción</label>
+                                                  </div>
+                                                </div>
+                                                <div class="form-group">
+                                                  <input type="file" id="imagen" (change)="onFileChange($event)" #fileInput>
+                                                  <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear File</button>
+                                                  <label>Imagen</label>
+                                                </div>
+                                              </fieldset>
+                                            </form>
+                                          </div>
+                                        <div class="card-action no-border text-right"><a (click)="onSubmit();" class="color-primary">Edit Animal</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer-black></app-footer-black>

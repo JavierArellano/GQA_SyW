@@ -8,8 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  active
 
-  constructor(private authService: AuthService, private router: Router ) { }
+  constructor(private authService: AuthService, private router: Router ) {
+    this.authService.headerObs().subscribe(
+      data => {
+        this.active = data;
+      })
+  }
 
   logout() {
   	this.authService.logout();

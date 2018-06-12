@@ -25,6 +25,8 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit() {
 	this.data = this.route.snapshot.paramMap.get('urldata');
+
+    this.animalService.authService.header('nada');
   }
 
 }

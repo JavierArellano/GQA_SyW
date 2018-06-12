@@ -17,6 +17,8 @@ export class ResetPasswordFirstComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.userService.authService.header('nada');
   }
 
 }

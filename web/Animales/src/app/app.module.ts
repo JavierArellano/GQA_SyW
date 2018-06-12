@@ -8,7 +8,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AnimalesComponent } from './animales/animales.component';
 import { AnimalService } from './animal.service';
-import { GlobalService } from './global.service';
 import { AuthService } from './auth0.service';
 import { AuthGuard } from './auth-guard';
 import { UserDetailComponent } from './user-detail/user-detail.component';

@@ -59,35 +59,70 @@
                         <div class="navbar-collapse collapse clearfix">
                        <ul *ngIf="authService.authenticated" class="navigation clearfix">
 
-                            <li class="current dropdown"><a routerLink="/animal" routerLinkActive="active">Home</a>
+                            <li *ngIf="active=='home'" class="current dropdown">
+                                <a routerLink="/animal" routerLinkActive="active">Home</a>
+                            </li>
+                            <li *ngIf="active!='home'" class="dropdown">
+                                <a routerLink="/animal" routerLinkActive="active">Home</a>
                             </li>
 
-                            <li class="dropdown"><a routerLink="/my-animals" routerLinkActive="active">My Animals</a>
+                            
+                            <li *ngIf="active=='mios'" class="current dropdown">
+                                <a routerLink="/my-animals" routerLinkActive="active">My Animals</a>
+                            </li>
+                            <li *ngIf="active!='mios'" class="dropdown">
+                                <a routerLink="/my-animals" routerLinkActive="active">My Animals</a>
+                            </li>
+
+                            <li *ngIf="active=='nuevo'" class="current dropdown">
+                                <a routerLink="/new-animal" routerLinkActive="active">New Animal</a>
+                            </li>
+                            <li *ngIf="active!='nuevo'" class="dropdown">
+                                <a routerLink="/new-animal" routerLinkActive="active">New Animal</a>
                             </li>
                             
-                            <li class="dropdown"><a routerLink="/contact" routerLinkActive="active">Contact</a>
+                            <li *ngIf="active=='contact'" class="current dropdown">
+                                <a routerLink="/contact" routerLinkActive="active">Contact</a>
+                            </li>
+                            <li *ngIf="active!='contact'" class="dropdown">
+                                <a routerLink="/contact" routerLinkActive="active">Contact</a>
                             </li>
 
-                            <li class="dropdown"><a routerLink="/new-animal" routerLinkActive="active">New Animal</a>
-                            </li>
-
-                            <li class="dropdown"><a (click)="logout()">Log Out</a>
+                            <li class="dropdown">
+                                <a (click)="logout()">Log Out</a>
                             </li>
                         </ul>
                        <ul *ngIf="!authService.authenticated" class="navigation clearfix">
-                            <li class="current dropdown"><a routerLink="/animal" routerLinkActive="active">Home</a>
+                            
+                            <li *ngIf="active=='home'" class="current dropdown">
+                                <a routerLink="/animal" routerLinkActive="active">Home</a>
+                            </li>
+                            <li *ngIf="active!='home'" class="dropdown">
+                                <a routerLink="/animal" routerLinkActive="active">Home</a>
                             </li>
                             
-                            <li class="dropdown"><a routerLink="/contact" routerLinkActive="active">Contact</a>
+                            <li *ngIf="active=='contact'" class="current dropdown">
+                                <a routerLink="/contact" routerLinkActive="active">Contact</a>
+                            </li>
+                            <li *ngIf="active!='contact'" class="dropdown">
+                                <a routerLink="/contact" routerLinkActive="active">Contact</a>
                             </li>
 
-                            <li class="dropdown"><a routerLink="/signin" routerLinkActive="active">Login</a>
-                            
+                            <li *ngIf="active=='login'" class="current dropdown">
+                                <a routerLink="/signin" routerLinkActive="active">Login</a>
                             </li>
-                            <li class="dropdown"><a routerLink="/signup" routerLinkActive="active">Register</a>
-                            
+                            <li *ngIf="active!='login'" class="dropdown">
+                                <a routerLink="/signin" routerLinkActive="active">Login</a>
                             </li>
-                        </ul>                        </div>
+                            
+                            <li *ngIf="active=='register'" class="current dropdown">
+                                <a routerLink="/signup" routerLinkActive="active">Register</a>
+                            </li>
+                            <li *ngIf="active!='register'" class="dropdown">
+                                <a routerLink="/signup" routerLinkActive="active">Register</a>
+                            </li>
+                        </ul>
+                        </div>
                     </nav>
                     
                     <!-- Main Menu End-->
@@ -143,31 +178,68 @@
                     <div class="navbar-collapse collapse clearfix">
                        <ul *ngIf="authService.authenticated" class="navigation clearfix">
 
-                            <li class="current dropdown"><a routerLink="/animal" routerLinkActive="active">Home</a>
+                            <li *ngIf="active=='home'" class="current dropdown">
+                                <a routerLink="/animal" routerLinkActive="active">Home</a>
+                            </li>
+                            <li *ngIf="active!='home'" class="dropdown">
+                                <a routerLink="/animal" routerLinkActive="active">Home</a>
                             </li>
 
-                            <li class="dropdown"><a routerLink="/my-animals" routerLinkActive="active">My Animals</a>
+                            <li *ngIf="active=='mios'" class="current dropdown">
+                                <a routerLink="/my-animals" routerLinkActive="active">My Animals</a>
+                            </li>
+                            <li *ngIf="active!='mios'" class="dropdown">
+                                <a routerLink="/my-animals" routerLinkActive="active">My Animals</a>
+                            </li>
+
+                            <li *ngIf="active=='nuevo'" class="current dropdown">
+                                <a routerLink="/new-animal" routerLinkActive="active">New Animal</a>
+                            </li>
+                            <li *ngIf="active!='nuevo'" class="dropdown">
+                                <a routerLink="/new-animal" routerLinkActive="active">New Animal</a>
                             </li>
                             
-                            <li class="dropdown"><a routerLink="/contact" routerLinkActive="active">Contact</a>
+                            <li *ngIf="active=='contact'" class="current dropdown">
+                                <a routerLink="/contact" routerLinkActive="active">Contact</a>
+                            </li>
+                            <li *ngIf="active!='contact'" class="dropdown">
+                                <a routerLink="/contact" routerLinkActive="active">Contact</a>
                             </li>
 
-                            <li class="dropdown"><a (click)="logout()">Log Out</a>
+                            <li class="dropdown">
+                                <a (click)="logout()">Log Out</a>
                             </li>
                         </ul>
                        <ul *ngIf="!authService.authenticated" class="navigation clearfix">
-                            <li class="current dropdown"><a routerLink="/animal" routerLinkActive="active">Home</a>
+                            
+                            <li *ngIf="active=='home'" class="current dropdown">
+                                <a routerLink="/animal" routerLinkActive="active">Home</a>
+                            </li>
+                            <li *ngIf="active!='home'" class="dropdown">
+                                <a routerLink="/animal" routerLinkActive="active">Home</a>
                             </li>
                             
-                            <li class="dropdown"><a routerLink="/contact" routerLinkActive="active">Contact</a>
+                            <li *ngIf="active=='contact'" class="current dropdown">
+                                <a routerLink="/contact" routerLinkActive="active">Contact</a>
+                            </li>
+                            <li *ngIf="active!='contact'" class="dropdown">
+                                <a routerLink="/contact" routerLinkActive="active">Contact</a>
                             </li>
 
-                            <li class="dropdown"><a routerLink="/signin" routerLinkActive="active">Login</a>
-                            
+                            <li *ngIf="active=='login'" class="current dropdown">
+                                <a routerLink="/signin" routerLinkActive="active">Login</a>
                             </li>
-                            <li class="dropdown"><a routerLink="/signup" routerLinkActive="active">Register</a>
-                            
+                            <li *ngIf="active!='login'" class="dropdown">
+                                <a routerLink="/signin" routerLinkActive="active">Login</a>
                             </li>
+                            
+                            <li *ngIf="active=='register'" class="current dropdown">
+                                <a routerLink="/signup" routerLinkActive="active">Register</a>
+                            </li>
+                            <li *ngIf="active!='register'" class="dropdown">
+                                <a routerLink="/signup" routerLinkActive="active">Register</a>
+                            </li>
+
                         </ul>
                     </div>
                 </nav>

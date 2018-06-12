@@ -93,6 +93,8 @@ export class NuevoAnimalComponent implements OnInit {
 
   ngOnInit() {
     this.getRaces();
+
+    this.animalService.authService.header('nuevo');
   }
 
 }

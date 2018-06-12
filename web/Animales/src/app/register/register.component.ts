@@ -26,6 +26,8 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.animalService.authService.header('register');
   }
 
 }
