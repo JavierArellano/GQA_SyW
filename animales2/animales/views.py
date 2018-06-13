@@ -183,7 +183,7 @@ class editAnimal(ProtectedResourceView):
 			new_animal_image.animal_id = animal.id
 			new_animal_image.save()
 
-		return HttpResponse(status=200)
+		return HttpResponse('Ok', status=200)
 
 	def decoder(self, file):
 		from django.core.files.base import ContentFile
@@ -224,7 +224,7 @@ class deleteAnimal(ProtectedResourceView):
 @method_decorator(csrf_exempt, name='dispatch')
 class registration(View):
 	def post(self, request):
-		import ipdb;ipdb.set_trace()
+		#import ipdb;ipdb.set_trace()
 		data = json.loads(request.body)
 		city_id = data['city']
 		del data['city']
@@ -237,7 +237,7 @@ class registration(View):
 			profile.save()
 		except IntegrityError:
 			return HttpResponse('Register Failed.', status=409)
-		return HttpResponse(status=200)
+		return HttpResponse('Register Ok.', status=200)
 
 
 @method_decorator(csrf_exempt, name='dispatch')

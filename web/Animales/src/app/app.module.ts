@@ -21,7 +21,6 @@ import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
 import { FooterBlackComponent } from './footer-black/footer-black.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ResetPasswordFirstComponent } from './reset-password-first/reset-password-first.component';
-import { ContactComponent } from './contact/contact.component';
 import { MyAnimalsComponent } from './my-animals/my-animals.component';
 import { EditAnimalComponent } from './edit-animal/edit-animal.component';
 
@@ -33,7 +32,6 @@ const appRoutes: Routes = [
   { path: 'animal/detail/:id', component: AnimalDetailComponent },
   { path: 'reset/password', component: ResetPasswordFirstComponent },
   { path: 'new/password/:urldata', component: ResetPasswordComponent },
-  { path: 'contact', component: ContactComponent },
   { path: 'new-animal', component: NuevoAnimalComponent, canActivate: [AuthGuard] },
   { path: 'my-animals', component: MyAnimalsComponent, canActivate: [AuthGuard] },
   { path: 'edit/animal/:id', component: EditAnimalComponent, canActivate: [AuthGuard] },
@@ -66,7 +64,6 @@ const appRoutes: Routes = [
         FooterBlackComponent,
         ResetPasswordComponent,
         ResetPasswordFirstComponent,
-        ContactComponent,
         MyAnimalsComponent,
         EditAnimalComponent
     ],

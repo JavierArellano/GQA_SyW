@@ -37,7 +37,6 @@ export class AnimalService {
   }
 
   register(body:any){
-  	console.log(body)
     return this.http.post("http://127.0.0.1:8000/registro", body)
       .map((response: Response) => response.json());
   }

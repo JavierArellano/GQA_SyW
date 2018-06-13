@@ -88,6 +88,13 @@ export class EditAnimalComponent implements OnInit {
     this.animalService.postEditAnimal(this.form.value).subscribe(
       data => {
         this.loading=false;
+        this.router.navigate(['/animal']);
+      },
+      error => {
+        if (typeof error._body === 'string') {
+        } else{
+          this.router.navigateByUrl('/my-animals');
+        }
       }
     )
   }

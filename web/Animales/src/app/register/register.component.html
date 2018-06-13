@@ -75,7 +75,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="ui-input-group">
-                                                                    <input type="text" required="" class="form-control">
+                                                                    <input #passw2 type="text" required="" class="form-control">
                                                                     <span class="input-bar"></span>
                                                                     <label>Please confirm your password </label>
                                                                 </div>
@@ -88,8 +88,9 @@
                                                             </div>
                                                         </fieldset>
                                                     </form>
+                                                    <p *ngIf="error!=''" id="color-de-error">{{error}}</p>
                                                 </div>
-                                                <div class="card-action no-border text-right"> <a routerLink="/signin" routerLinkActive="active">Login</a><a (click)="register(usern.value,passw.value,email.value,first_name.value,last_name.value);" class="color-primary">Sign Up</a> </div>
+                                                <div class="card-action no-border text-right"> <a routerLink="/signin" routerLinkActive="active">Login</a><a (click)="register(usern.value,passw.value,passw2.value,email.value,first_name.value,last_name.value);" class="color-primary">Sign Up</a> </div>
                                             </div>
                                         </div>
                                     </div>
