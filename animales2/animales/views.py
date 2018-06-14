@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.core.serializers import serialize
@@ -160,30 +161,43 @@ class editAnimal(ProtectedResourceView):
 		#import ipdb;ipdb.set_trace()
 		data = json.loads(request.body)
 		animal = Animal.objects.get(id=data['id'])
-		animal.animal_type_id = data['animal_type']
-		animal.race_id = data['race']
-		animal.state = data['state']
-		animal.name = data['name']
-		animal.color = data['color']
-		animal.age = data['age']
-		animal.genre = data['genre']
-		animal.vaccinated = data['vaccinated']
-		animal.description = data['description']
-		animal.save()
+		pId = Profile.objects.filter(user_id=request.user.id)[0].id;
+		if pId == animal.profile_id:
+			if data['animal_type']!='':
+				animal.animal_type_id = data['animal_type']
+			if data['race']!= '':
+				animal.race_id = data['race']
+			if data['state']!= '':
+				animal.state = data['state']
+			if data['name']!= '':
+				animal.name = data['name']
+			if data['color']!= '':
+				animal.color = data['color']
+			if data['age']!= '':
+				animal.age = data['age']
+			if data['genre']!= '':
+				animal.genre = data['genre']
+			if data['vaccinated']!= '':
+				animal.vaccinated = data['vaccinated']
+			if data['description']!= '':
+				animal.description = data['description']
+			animal.save()
 
-		if data['image']:
-			lista = list(AnimalImage.objects.filter(animal_id=animal.id).values())
-			if len(lista)>0:
-				os.remove("media/"+lista[0]['image'])
-			AnimalImage.objects.filter(animal_id=animal.id).delete()
-			data2 = self.decoder(data['image'])
+			if data['image']:
+				lista = list(AnimalImage.objects.filter(animal_id=animal.id).values())
+				if len(lista)>0:
+					os.remove("media/"+lista[0]['image'])
+				AnimalImage.objects.filter(animal_id=animal.id).delete()
+				data2 = self.decoder(data['image'])
 
-			new_animal_image = AnimalImage()
-			new_animal_image.image = data2
-			new_animal_image.animal_id = animal.id
-			new_animal_image.save()
+				new_animal_image = AnimalImage()
+				new_animal_image.image = data2
+				new_animal_image.animal_id = animal.id
+				new_animal_image.save()
 
-		return HttpResponse('Ok', status=200)
+			return HttpResponse('Ok', status=200)
+		else:
+			return HttpResponse('Edit Failed.', status=403)
 
 	def decoder(self, file):
 		from django.core.files.base import ContentFile
