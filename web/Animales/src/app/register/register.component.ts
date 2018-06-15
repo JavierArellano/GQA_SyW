@@ -47,17 +47,12 @@ export class RegisterComponent implements OnInit {
 
   onChangePais(tipo){
     this.ciudades = this.paises[tipo-1].cities;
-    console.log(this.ciudades);
   }
 
   getCities() {
     this.animalService.getCities().subscribe(
       data => {
         this.paises = data;
-        this.ciudades = data[0].cities;
-        console.log(this.paises);
-        console.log('ciudades get cities');
-        console.log(this.ciudades);
       })
   }
 

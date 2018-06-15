@@ -18,12 +18,10 @@ export class AnimalService {
   }
 
   forgot(body:any){
-    console.log(body);
     return this.http.post("http://127.0.0.1:8000/reset/password/", body)
       .map((response: Response) => response.json());
   }
   change(urldata:any, body:any){
-    console.log(body);
     return this.http.post("http://127.0.0.1:8000/new/password/"+urldata+"/", body)
       .map((response: Response) => response.json());
   }
