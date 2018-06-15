@@ -1,23 +1,184 @@
 # -*- coding: utf-8 -*-
+	
+# pegar lista y este bucle para añadir ciudades, en cualquier vista
+# cambiar la id del pais 	
+#for c in lista_colombia:
+#	s = City()
+#	s.name = c
+#	s.country_id='4'
+#	s.save()
 CH_STATE = [
-	u'España',
-	u'México',
-	u'Chile',
-	u'Colombia',
-	u'Venezuela',
-	u'Perú',
-	u'Ecuador',
-	u'Guatemala',
-	u'Cuba',
-	u'República Dominicana',
-	u'Honduras',
-	u'Bolivia',
-	u'El Salvador',
-	u'Nicaragua',
-	u'Paraguay',
-	u'Costa Rica',
-	u'Panamá',
-	u'Otro'
+	u'España',			#id=1
+	u'México',			#id=2
+	u'Chile',			#id=3
+	u'Colombia',		#id=4
+	u'Venezuela',		#id=5
+	u'Perú',			#id=6
+	u'Ecuador',			#id=7
+	u'Guatemala',		#id=8
+	u'Cuba',			#id=9
+	u'Rep. Dominicana',	#id=10
+	u'Honduras',		#id=11
+	u'Bolivia',			#id=12
+	u'El Salvador',		#id=13
+	u'Nicaragua',		#id=14
+	u'Paraguay',		#id=15
+	u'Costa Rica',		#id=16
+	u'Panamá',			#id=17
+	u'Otro'				#id=18
+]
+
+lista_colombia = [
+
+]
+
+lista_chile=[
+'Gran Santiagoo',
+'Gran Concepción',
+'Gran Valparaíso',
+'Gran La Serena',
+'Antofagasta',
+'Gran Temuco',
+'Gran Rancagua',
+'Gran Iquique',
+'Talca',
+'Arica',
+'Gran Puerto Montt',
+'Gran Chillán',
+'Los Ángeles',
+'Calama',
+'Copiapó',
+'Osorno',
+'Gran Quillota',
+'Valdivia',
+'Punta Arenas',
+'Gran San Antonio',
+'Curicó',
+'Ovalle',
+'Linares',
+'Los Andes',
+'Melipilla',
+'San Felipe'
+]
+
+lista_mexi =[
+'Ciudad de México',
+'Ecatepec',
+'Guadalajara',
+'Puebla de Zaragoza',
+'Ciudad Juárez',
+'Tijuana',
+'León',
+'Zapopan',
+'Monterrey',
+'Nezahualcóyotl',
+'Chihuahua',
+'Naucalpan de Juárez',
+'Mérida',
+'San Luis Potosí',
+'Aguascalientes',
+'Hermosillo',
+'Saltillo',
+'Mexicali',
+'Culiacán Rosales',
+'Guadalupe',
+'Acapulco de Juárez',
+'Tlalnepantla de Baz',
+'Cancún',
+'Santiago de Querétaro',
+'Chimalhuacán',
+'Torreón',
+'Morelia',
+'Reynosa',
+'Tlaquepaque',
+'Tuxtla Gutiérrez',
+'Victoria de Durango',
+'Toluca de Lerdo',
+'Ciudad López Mateos',
+'Cuautitlán Izcalli',
+'Apodaca',
+'Heroica Matamoros',
+'San Nicolás de los Garza',
+'Veracruz',
+'Xalapa',
+'Tonalá',
+'Mazatlán',
+'Irapuato',
+'Nuevo Laredo',
+'Xico',
+'Villahermosa',
+'General Escobedo',
+'Celaya',
+'Cuernavaca',
+'Tepic',
+'Ixtapaluca',
+'Ciudad Victoria',
+'Ciudad Obregón',
+'Tampico',
+'Villa Nicolás Romero',
+'Ensenada',
+'San Francisco Coacalco',
+'Santa Catarina',
+'Uruapan',
+'Gómez Palacio',
+'Los Mochis',
+'Pachuca de Soto',
+'Oaxaca de Juárez',
+'Soledad de Graciano Sánchez',
+'Tehuacán',
+'Ojo de Agua',
+'Coatzacoalcos',
+'San Francisco de Campeche',
+'Monclova',
+'La Paz',
+'Heroica Nogales',
+'Buenavista',
+'Puerto Vallarta',
+'Tapachula',
+'Ciudad Madero',
+'San Pablo de las Salinas',
+'Chilpancingo de los Bravo',
+'Poza Rica de Hidalgo',
+'Chicoloapan',
+'Ciudad del Carmen',
+'Chalco de Díaz Covarrubias',
+'Jiutepec',
+'Salamanca',
+'San Luis Río Colorado',
+'San Cristóbal de las Casas',
+'Cuautla de Morelos',
+'Juárez',
+'Chetumal',
+'Piedras Negras',
+'Playa del Carmen',
+'Zamora',
+'Córdoba',
+'San Juan del Río',
+'Colima',
+'Ciudad Acuña',
+'Manzanillo',
+'Zacatecas',
+'Veracruz',
+'Ciudad Valles',
+'Guadalupe',
+'San Pedro Garza García',
+'Naucalpan de Juárez',
+'Fresnillo',
+'Orizaba',
+'Miramar',
+'Iguala',
+'Delicias',
+'Villa de Álvarez',
+'Ciudad Cuauhtémoc',
+'Navojoa',
+'Guaymas',
+'Minatitlán',
+'Cuautitlán',
+'Texcoco de Mora',
+'Hidalgo del Parral',
+'Tepexpan',
+'Tulancingo de Bravo',
+'San Juan Bautista Tuxtepec'
 ]
 
 lista_ciudades_esp=[
