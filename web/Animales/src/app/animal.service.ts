@@ -56,7 +56,7 @@ export class AnimalService {
       .map((response: Response) => response.json());
   }
 
-  getCyties() {
+  getCities() {
     return this.http.get("http://127.0.0.1:8000/ciudades")
       .map((response: Response) => response.json());
   }

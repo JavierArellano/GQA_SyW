@@ -9,10 +9,14 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   error:string='';
+  paises;
+  ciudades;
 
-  constructor(private animalService: AnimalService, private router: Router) { }
+  constructor(private animalService: AnimalService, private router: Router) {
+    this.getCities();
+  }
 
-  register(username,password,passw2,email,first_name,last_name){
+  register(username,password,passw2,email,first_name,last_name,ciudad){
     if (password==passw2) {
       let data = {
         "username": String(username),
@@ -20,7 +24,7 @@ export class RegisterComponent implements OnInit {
         "email": String(email),
         "first_name": String(first_name),
         "last_name": String(last_name),
-        "city": "1"
+        "city": String(ciudad)
       }
       let user = JSON.stringify(data);
       this.animalService.register(user).subscribe(
@@ -41,8 +45,23 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  onChangePais(tipo){
+    this.ciudades = this.paises[tipo-1].cities;
+    console.log(this.ciudades);
+  }
 
+  getCities() {
+    this.animalService.getCities().subscribe(
+      data => {
+        this.paises = data;
+        this.ciudades = data[0].cities;
+        console.log(this.paises);
+        console.log('ciudades get cities');
+        console.log(this.ciudades);
+      })
+  }
+
+  ngOnInit() {
     this.animalService.authService.header('register');
   }
 

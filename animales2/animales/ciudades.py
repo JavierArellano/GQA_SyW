@@ -1,6 +1,26 @@
 # -*- coding: utf-8 -*-
+CH_STATE = [
+	u'España',
+	u'México',
+	u'Chile',
+	u'Colombia',
+	u'Venezuela',
+	u'Perú',
+	u'Ecuador',
+	u'Guatemala',
+	u'Cuba',
+	u'República Dominicana',
+	u'Honduras',
+	u'Bolivia',
+	u'El Salvador',
+	u'Nicaragua',
+	u'Paraguay',
+	u'Costa Rica',
+	u'Panamá',
+	u'Otro'
+]
 
-lista_ciudades=[
+lista_ciudades_esp=[
 u'Barcelona',
 u'Valencia',
 u'Sevilla',

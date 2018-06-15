@@ -52,6 +52,24 @@
                                                                     <label>Your email</label>
                                                                 </div>
                                                             </div>
+
+                                                            <div class="form-group">
+                                                                <div class="select_option_one">
+                                                                    <select class=""(change)="onChangePais($event.target.value)">
+                                                                        <option *ngFor="let pais of paises" [value]="pais.id">{{pais.name}}</option>
+                                                                    </select>
+                                                                    <label>Pais</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="select_option_one">
+                                                                    <select #city class="">
+                                                                        <option *ngFor="let city of ciudades" [value]="city.id">{{city.name}}</option>
+                                                                    </select>
+                                                                    <label>Ciudad</label>
+                                                                </div>
+                                                            </div>
+
                                                             <div class="form-group">
                                                                 <div class="ui-input-group">
                                                                     <input #first_name type="text" required="" class="form-control">
@@ -68,14 +86,14 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="ui-input-group">
-                                                                    <input #passw type="text" required="" class="form-control">
+                                                                    <input #passw type="password" required="" class="form-control">
                                                                     <span class="input-bar"></span>
                                                                     <label>Your password </label>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="ui-input-group">
-                                                                    <input #passw2 type="text" required="" class="form-control">
+                                                                    <input #passw2 type="password" required="" class="form-control">
                                                                     <span class="input-bar"></span>
                                                                     <label>Please confirm your password </label>
                                                                 </div>
@@ -90,7 +108,7 @@
                                                     </form>
                                                     <p *ngIf="error!=''" id="color-de-error">{{error}}</p>
                                                 </div>
-                                                <div class="card-action no-border text-right"> <a routerLink="/signin" routerLinkActive="active">Login</a><a (click)="register(usern.value,passw.value,passw2.value,email.value,first_name.value,last_name.value);" class="color-primary">Sign Up</a> </div>
+                                                <div class="card-action no-border text-right"> <a routerLink="/signin" routerLinkActive="active">Login</a><a (click)="register(usern.value,passw.value,passw2.value,email.value,first_name.value,last_name.value,city.value);" class="color-primary">Sign Up</a> </div>
                                             </div>
                                         </div>
                                     </div>

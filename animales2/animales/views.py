@@ -105,6 +105,8 @@ class animal_image(View):
 		return HttpResponse(queryset)
 
 
+# POST
+
 @method_decorator(csrf_exempt, name='dispatch')
 class newAnimal(ProtectedResourceView):
 	def post(self, request):
